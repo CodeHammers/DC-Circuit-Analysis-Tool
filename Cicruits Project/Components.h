@@ -19,3 +19,6 @@ struct Node
 };
 
 bool checkEssential(Node* node);
+double CalculateMutualG(Node* node1, Node* node2);
+double CalculateCurrent(Node* node);
+double CalculateMutualCurrent(Node* node1, Node* node2);
