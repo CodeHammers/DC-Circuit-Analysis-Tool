@@ -1,13 +1,14 @@
 //main function goes here
 #include <iostream>
-#include "armadillo"
-using namespace arma;
-using namespace std;
-
-int main() {
-	//example
-	mat x;
-	x << 1 << 2 << endr << 3 << 4;
-	cout << x[0,1];
-	cin.get();
+#include <Eigen/Dense>
+using Eigen::MatrixXd;
+int main()
+{
+	MatrixXd m(2, 2);
+	m(0, 0) = 3;
+	m(1, 0) = 2.5;
+	m(0, 1) = -1;
+	m(1, 1) = m(1, 0) + m(0, 1);
+	std::cout << m << std::endl;
+	std::cin.get();
 }

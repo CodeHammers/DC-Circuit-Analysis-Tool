@@ -6,6 +6,7 @@
 #include<fstream>
 #include<sstream>
 #include<cmath>
-#include "armadillo"
-using namespace arma;
+#include <Eigen/Dense>
+
+using Eigen::MatrixXd;
 using namespace std;

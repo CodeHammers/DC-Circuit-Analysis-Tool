@@ -1,7 +1,6 @@
-﻿  LinearAlgebra.cpp
-  Generating Code...
-  Compiling...
+﻿  Source.cpp
   NodeAnalysis.cpp
+  LinearAlgebra.cpp
   IO file.cpp
   Generating Code...
   Cicruits Project.vcxproj -> D:\Software_Development\C++\Circuits-Project-2017\Debug\Cicruits Project.exe
