@@ -6,4 +6,6 @@
 #include<fstream>
 #include<sstream>
 #include<cmath>
+#include "armadillo"
+using namespace arma;
 using namespace std;

@@ -19,6 +19,10 @@ struct Node
 };
 
 bool checkEssential(Node* node);
+double CalculateG(Node* node);
 double CalculateMutualG(Node* node1, Node* node2);
 double CalculateCurrent(Node* node);
 double CalculateMutualCurrent(Node* node1, Node* node2);
+mat BuildMatrixG(vector<Node> nodes);
+mat BuildMatrixI(vector<Node> nodes);
+//mat GetMatrixV(mat G, mat I);

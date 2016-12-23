@@ -17,6 +17,8 @@ double CalculateG(Node* node) {
 }
 //calculates G  for resistors  between two nodes
 double CalculateMutualG(Node* node1,Node* node2) {
+	if (node1 == node2)
+		return CalculateG(node1);
 	double TotalG = 0;
 	for (std::vector<Component>::iterator it = node1->Resistors.begin(); it != node1->Resistors.end(); ++it)
 		if( (it->Terminal1==node1->Number&&it->Terminal2 == node2->Number) || (it->Terminal2 == node1->Number&&it->Terminal1 == node2->Number) )
@@ -31,6 +33,8 @@ double CalculateCurrent(Node* node) {
 }
 //calculates I for current Sources  between two nodes
 double CalculateMutualCurrent(Node* node1, Node* node2) {
+	if (node1 == node2)
+		return CalculateCurrent(node1);
 	double TotalI = 0;
 	for (std::vector<Component>::iterator it = node1->CurrentSource.begin(); it != node1->CurrentSource.end(); ++it)
 		if ((it->Terminal1 == node1->Number&&it->Terminal2 == node2->Number) || (it->Terminal2 == node1->Number&&it->Terminal1 == node2->Number))

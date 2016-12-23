@@ -8,6 +8,6 @@ int main() {
 	//example
 	mat x;
 	x << 1 << 2 << endr << 3 << 4;
-	cout << x;
+	cout << x[0,1];
 	cin.get();
 }
