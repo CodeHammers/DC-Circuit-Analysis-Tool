@@ -1,6 +1,6 @@
 #include "Components.h"
 
-
+/*
 bool CheckEssential(Node* node) {
 	//Please note : voltageSources should be zero  in node analysis , otherwise you should know what you are doing
 	int totalSize = node->Resistors.size() + node->CurrentSource.size() + node->VoltageSource.size();
@@ -40,4 +40,4 @@ double CalculateMutualCurrent(Node* node1, Node* node2) {
 		if ((it->Terminal1 == node1->Number&&it->Terminal2 == node2->Number) || (it->Terminal2 == node1->Number&&it->Terminal1 == node2->Number))
 			TotalI += 1 / it->Magnitude;
 	return TotalI;
-}
+}*/

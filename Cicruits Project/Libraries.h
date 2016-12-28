@@ -6,7 +6,7 @@
 #include<fstream>
 #include<sstream>
 #include<cmath>
-#include <Eigen/Dense>
+//#include <Eigen/Dense>
 
-using Eigen::MatrixXd;
+//using Eigen::MatrixXd;
 using namespace std;
