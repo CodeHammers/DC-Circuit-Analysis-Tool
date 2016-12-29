@@ -12,6 +12,7 @@ struct Component
 struct Node
 {
 	int Number;
+	double voltage;
 	vector<Component>Resistors;
 	vector<Component>CurrentSource;
 	vector<Component>VoltageSource;
@@ -50,3 +51,5 @@ double CalculateCurrent(Node* node);
 MatrixXd BuildMatrixG(vector<Node> nodes);
 MatrixXd BuildMatrixI(vector<Node> nodes);
 MatrixXd GetMatrixV(MatrixXd G, MatrixXd I);
+void BindVoltageValues(vector<Node> nodes, MatrixXd matrixV);
+void PerformNodeAnalysis(vector<Node> nodes);

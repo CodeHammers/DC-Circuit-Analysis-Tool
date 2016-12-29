@@ -3,7 +3,7 @@
 
 bool CheckEssential(Node* node) {
 	//Please note : voltageSources should be zero  in node analysis , otherwise you should know what you are doing
-	int totalSize = node->Resistors.size() + node->CurrentSource.size() + node->VoltageSource.size();
+	int totalSize = node->Resistors.size() + node->CurrentSource.size();
 	if (totalSize < 2)
 		return true;
 	return false;
@@ -33,4 +33,34 @@ double CalculateCurrent(Node* node) {
 }
 //TODO: Function to distinguish the ref node 
 bool isRef(Node* node) {
+	return false;
+}
+void BindVoltageValues(vector<Node> nodes,MatrixXd matrixV) {
+	int matIndex = 0;
+	for (int i = 0;i<nodes.size();i++) 
+		if (CheckEssential(&nodes[i])) {
+			nodes[i].voltage = matrixV(matIndex, 0);
+			matIndex++;
+		}
+}
+int CountEssentialNodes(vector<Node> nodes) {
+	int EssentialsCount = 0;
+	for (std::vector<Node>::iterator it = nodes.begin(); it != nodes.end(); ++it) {
+		if (CheckEssential(&(*it)))
+			EssentialsCount++;
+	}
+	return EssentialsCount;
+}
+//returns the vector of nodes with the voltages values
+//attached to each node
+void PerformNodeAnalysis(vector<Node> nodes) {
+	//Should there be a call to convert circuit first 
+	int EssetialCount = CountEssentialNodes(nodes);
+	MatrixXd matG(EssetialCount, EssetialCount);
+	MatrixXd matI(EssetialCount, 1);
+	MatrixXd matV(EssetialCount, 1);
+	matG= BuildMatrixG(nodes);
+	matI = BuildMatrixI(nodes);
+	matV = GetMatrixV(matG, matI);
+	BindVoltageValues(nodes,matV);
 }
