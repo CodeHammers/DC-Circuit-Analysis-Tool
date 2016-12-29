@@ -16,16 +16,12 @@ MatrixXd BuildMatrixG(vector<Node> nodes) {
 //Builds Currents matrix 
 
 MatrixXd BuildMatrixI(vector<Node> nodes) {
-	MatrixXd matrixI(nodes.size(), nodes.size());
-	int i = 0; int j = 0;
+	MatrixXd matrixI(nodes.size(), 1);
+	int i = 0; 
 	for (std::vector<Node>::iterator outerIt = nodes.begin(); outerIt != nodes.end(); ++outerIt) {
-		for (std::vector<Node>::iterator innerIt = nodes.begin(); innerIt != nodes.end(); ++innerIt) {
-			matrixI(i, j) = CalculateMutualCurrent(&(*outerIt), &(*innerIt));
-			j++;
+			matrixI(i, 0) = CalculateCurrent(&(*outerIt));
+			i++;
 		}
-		j = 0;
-		i++;
-	}
 	return matrixI;
 }
 //Builds the required Voltage matrix
