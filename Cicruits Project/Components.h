@@ -42,6 +42,7 @@ int GetTheIndex(string name, vector<Component> Objects);
 
 bool FirstAppear(string name, vector<Component>Aux);
 
+bool isRef(Node* node);
 bool CheckEssential(Node* node);
 double CalculateG(Node* node);
 double CalculateMutualG(Node* node1, Node* node2);

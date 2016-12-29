@@ -31,3 +31,6 @@ double CalculateCurrent(Node* node) {
 		TotalI += 1 / it->Magnitude;
 	return TotalI;
 }
+//TODO: Function to distinguish the ref node 
+bool isRef(Node* node) {
+}
