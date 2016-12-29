@@ -41,12 +41,12 @@ void ConnectElementsToNode(vector<NewNode>&Circuit, vector<Component> &VoltageSo
 int GetTheIndex(string name, vector<Component> Objects);
 
 bool FirstAppear(string name, vector<Component>Aux);
-/*
-bool checkEssential(Node* node);
+
+bool CheckEssential(Node* node);
 double CalculateG(Node* node);
 double CalculateMutualG(Node* node1, Node* node2);
 double CalculateCurrent(Node* node);
 double CalculateMutualCurrent(Node* node1, Node* node2);
 MatrixXd BuildMatrixG(vector<Node> nodes);
 MatrixXd BuildMatrixI(vector<Node> nodes);
-MatrixXd GetMatrixV(MatrixXd G, MatrixXd I);*/
+MatrixXd GetMatrixV(MatrixXd G, MatrixXd I);

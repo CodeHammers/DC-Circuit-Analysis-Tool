@@ -1,4 +1,4 @@
-/*#include "Components.h"
+#include "Components.h"
 //Builds G matrix 1/sumRes for all nodes
 MatrixXd BuildMatrixG(vector<Node> nodes) {
 	MatrixXd matrixG(nodes.size(), nodes.size());
@@ -32,4 +32,3 @@ MatrixXd BuildMatrixI(vector<Node> nodes) {
 MatrixXd GetMatrixV(MatrixXd G, MatrixXd I) {
 	return G.inverse() * I ;
 }
-*/
