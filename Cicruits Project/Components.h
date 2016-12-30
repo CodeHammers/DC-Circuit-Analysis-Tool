@@ -55,3 +55,5 @@ MatrixXd BuildMatrixI(vector<Node> nodes);
 MatrixXd GetMatrixV(MatrixXd G, MatrixXd I);
 void BindVoltageValues(vector<Node> nodes, MatrixXd matrixV);
 void PerformNodeAnalysis(vector<Node> nodes);
+void ConvertVStoCS(Node* node, vector<Node> nodes);
+void ConvertCircuit(vector<Node> nodes);

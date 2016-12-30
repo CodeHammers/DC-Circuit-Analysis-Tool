@@ -59,12 +59,12 @@ void ConvertCircuit(vector<Node> nodes) {
 		if (!CheckEssential(&nodes[i])) {
 			bool validToConvert = !(nodes[i].Resistors.empty() && nodes[i].VoltageSource.empty());
 			if (validToConvert) {
-				ConvertVStoCS(&nodes[i]);
+				ConvertVStoCS(&nodes[i],nodes);
 			}
 		}
 	}
 }
-void ConvertVStoCS(Node* node) {
+void ConvertVStoCS(Node* node,vector<Node> nodes) {
 	node->deprecated = true;
 	Component CurrentSource;
 	CurrentSource.Label = "JX";//to denote it's not original in the circuit
@@ -78,6 +78,7 @@ void ConvertVStoCS(Node* node) {
 			node->Resistors[0].Terminal1 = node->VoltageSource[0].Terminal1;
 		}
 		CurrentSource.Terminal1 = node->Resistors[0].Terminal1;
+		nodes[node->Resistors[0].Terminal1].Resistors.push_back(node->Resistors[0]);
 	}
 
 
@@ -90,7 +91,12 @@ void ConvertVStoCS(Node* node) {
 			node->Resistors[0].Terminal2 = node->VoltageSource[0].Terminal1;
 		}
 		CurrentSource.Terminal2 = node->Resistors[0].Terminal2;
+		nodes[node->Resistors[0].Terminal2].Resistors.push_back(node->Resistors[0]);
 	}
+	int node1 = CurrentSource.Terminal1;
+	int node2 = CurrentSource.Terminal2;
+	nodes[node1].CurrentSource.push_back(CurrentSource);
+	nodes[node2].CurrentSource.push_back(CurrentSource);
 }
 
 //returns the vector of nodes with the voltages values
