@@ -4,7 +4,7 @@
 bool CheckEssential(Node* node) {
 	//Please note : voltageSources should be zero  in node analysis , otherwise you should know what you are doing
 	int totalSize = node->Resistors.size() + node->CurrentSource.size() + node->VoltageSource.size();
-	if (totalSize < 2)
+	if (totalSize < 3)
 		return true;
 	return false;
 
@@ -28,17 +28,17 @@ double CalculateMutualG(Node* node1,Node* node2) {
 double CalculateCurrent(Node* node) {
 	double TotalI = 0;
 	for (std::vector<Component>::iterator it = node->CurrentSource.begin(); it != node->CurrentSource.end(); ++it)
-		TotalI += 1 / it->Magnitude;
+		TotalI += it->Magnitude;
 	return TotalI;
 }
 //TODO: Function to distinguish the ref node 
 bool isRef(Node* node) {
 	return !node->deprecated;
 }
-void BindVoltageValues(vector<Node> nodes,MatrixXd matrixV) {
+void BindVoltageValues(vector<Node> &nodes,MatrixXd matrixV) {
 	int matIndex = 0;
 	for (int i = 0; i < nodes.size(); i++)
-		if (CheckEssential(&nodes[i])) {
+		if (!nodes[i].deprecated) {
 			nodes[i].voltage = matrixV(matIndex, 0);
 			nodes[i].voltageSet = true;
 			matIndex++;
@@ -46,14 +46,7 @@ void BindVoltageValues(vector<Node> nodes,MatrixXd matrixV) {
 		else
 			nodes[i].voltageSet = false;
 }
-int CountEssentialNodes(vector<Node> nodes) {
-	int EssentialsCount = 0;
-	for (std::vector<Node>::iterator it = nodes.begin(); it != nodes.end(); ++it) {
-		if (CheckEssential(&(*it)))
-			EssentialsCount++;
-	}
-	return EssentialsCount;
-}
+
 void ConvertCircuit(vector<Node> nodes) {
 	for (int i = 0; i < nodes.size(); i++) {
 		if (!CheckEssential(&nodes[i])) {
@@ -64,10 +57,10 @@ void ConvertCircuit(vector<Node> nodes) {
 		}
 	}
 }
-void ConvertVStoCS(Node* node,vector<Node> nodes) {
+void ConvertVStoCS(Node* node,vector<Node> &nodes) {
 	node->deprecated = true;
 	Component CurrentSource;
-	CurrentSource.Label = "JX";//to denote it's not original in the circuit
+	CurrentSource.Label = "J0";//to denote it's not original in the circuit
 	CurrentSource.Magnitude = node->VoltageSource[0].Magnitude / node->Resistors[0].Magnitude;
 	if (node->Resistors[0].Terminal1 == node->Number) {
 		CurrentSource.Terminal2 = node->Resistors[0].Terminal2;
@@ -102,11 +95,11 @@ void ConvertVStoCS(Node* node,vector<Node> nodes) {
 void DeConvertCircuit(vector<Node> nodes) {
 	for (int i = 0; i < nodes.size(); i++) {
 		if (nodes[i].deprecated == true) {
-			
+			RecoverNode(&nodes[i],nodes);
 		}
 	}
 }
-void ConvertCStoVS(Node* node,vector<Node> nodes) {
+void RecoverNode(Node* node,vector<Node> &nodes) {
 	nodes[node->Resistors[0].Terminal1].CurrentSource.pop_back();
 	nodes[node->Resistors[0].Terminal2].CurrentSource.pop_back();
 	if (node->VoltageSource[0].Terminal1 == node->Resistors[0].Terminal1 || node->VoltageSource[0].Terminal2 == node->Resistors[0].Terminal1) {
@@ -120,12 +113,11 @@ void ConvertCStoVS(Node* node,vector<Node> nodes) {
 }
 //returns the vector of nodes with the voltages values
 //attached to each node
-void PerformNodeAnalysis(vector<Node> nodes) {
+void PerformNodeAnalysis(vector<Node> &nodes) {
 	//Should there be a call to convert circuit first 
-	int EssetialCount = CountEssentialNodes(nodes);
-	MatrixXd matG(EssetialCount, EssetialCount);
-	MatrixXd matI(EssetialCount, 1);
-	MatrixXd matV(EssetialCount, 1);
+	MatrixXd matG(nodes.size(), nodes.size());
+	MatrixXd matI(nodes.size(), 1);
+	MatrixXd matV(nodes.size(), 1);
 	matG= BuildMatrixG(nodes);
 	matI = BuildMatrixI(nodes);
 	matV = GetMatrixV(matG, matI);
