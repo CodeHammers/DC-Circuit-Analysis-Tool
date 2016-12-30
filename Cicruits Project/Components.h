@@ -13,6 +13,8 @@ struct Node
 {
 	int Number;
 	double voltage;
+	bool deprecated;
+	bool voltageSet;
 	vector<Component>Resistors;
 	vector<Component>CurrentSource;
 	vector<Component>VoltageSource;

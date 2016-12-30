@@ -3,7 +3,7 @@
 
 bool CheckEssential(Node* node) {
 	//Please note : voltageSources should be zero  in node analysis , otherwise you should know what you are doing
-	int totalSize = node->Resistors.size() + node->CurrentSource.size();
+	int totalSize = node->Resistors.size() + node->CurrentSource.size() + node->VoltageSource.size();
 	if (totalSize < 2)
 		return true;
 	return false;
@@ -37,11 +37,14 @@ bool isRef(Node* node) {
 }
 void BindVoltageValues(vector<Node> nodes,MatrixXd matrixV) {
 	int matIndex = 0;
-	for (int i = 0;i<nodes.size();i++) 
+	for (int i = 0; i < nodes.size(); i++)
 		if (CheckEssential(&nodes[i])) {
 			nodes[i].voltage = matrixV(matIndex, 0);
+			nodes[i].voltageSet = true;
 			matIndex++;
 		}
+		else
+			nodes[i].voltageSet = false;
 }
 int CountEssentialNodes(vector<Node> nodes) {
 	int EssentialsCount = 0;
@@ -51,6 +54,45 @@ int CountEssentialNodes(vector<Node> nodes) {
 	}
 	return EssentialsCount;
 }
+void ConvertCircuit(vector<Node> nodes) {
+	for (int i = 0; i < nodes.size(); i++) {
+		if (!CheckEssential(&nodes[i])) {
+			bool validToConvert = !(nodes[i].Resistors.empty() && nodes[i].VoltageSource.empty());
+			if (validToConvert) {
+				ConvertVStoCS(&nodes[i]);
+			}
+		}
+	}
+}
+void ConvertVStoCS(Node* node) {
+	node->deprecated = true;
+	Component CurrentSource;
+	CurrentSource.Label = "JX";//to denote it's not original in the circuit
+	CurrentSource.Magnitude = node->VoltageSource[0].Magnitude / node->Resistors[0].Magnitude;
+	if (node->Resistors[0].Terminal1 == node->Number) {
+		CurrentSource.Terminal2 = node->Resistors[0].Terminal2;
+		if (node->VoltageSource[0].Terminal1 == node->Number) {
+			node->Resistors[0].Terminal1 = node->VoltageSource[0].Terminal2;
+		}
+		else {
+			node->Resistors[0].Terminal1 = node->VoltageSource[0].Terminal1;
+		}
+		CurrentSource.Terminal1 = node->Resistors[0].Terminal1;
+	}
+
+
+	else {
+		CurrentSource.Terminal1 = node->Resistors[0].Terminal1;
+		if (node->VoltageSource[0].Terminal1 == node->Number) {
+			node->Resistors[0].Terminal2 = node->VoltageSource[0].Terminal2;
+		}
+		else {
+			node->Resistors[0].Terminal2 = node->VoltageSource[0].Terminal1;
+		}
+		CurrentSource.Terminal2 = node->Resistors[0].Terminal2;
+	}
+}
+
 //returns the vector of nodes with the voltages values
 //attached to each node
 void PerformNodeAnalysis(vector<Node> nodes) {
