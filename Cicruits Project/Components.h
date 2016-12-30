@@ -57,3 +57,5 @@ void BindVoltageValues(vector<Node> nodes, MatrixXd matrixV);
 void PerformNodeAnalysis(vector<Node> nodes);
 void ConvertVStoCS(Node* node, vector<Node> nodes);
 void ConvertCircuit(vector<Node> nodes);
+void DeConvertCircuit(vector<Node> nodes);
+void ConvertCStoVS(Node* node, vector<Node> nodes);

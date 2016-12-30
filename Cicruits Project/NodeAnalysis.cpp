@@ -33,7 +33,7 @@ double CalculateCurrent(Node* node) {
 }
 //TODO: Function to distinguish the ref node 
 bool isRef(Node* node) {
-	return false;
+	return !node->deprecated;
 }
 void BindVoltageValues(vector<Node> nodes,MatrixXd matrixV) {
 	int matIndex = 0;
@@ -99,6 +99,25 @@ void ConvertVStoCS(Node* node,vector<Node> nodes) {
 	nodes[node2].CurrentSource.push_back(CurrentSource);
 }
 
+void DeConvertCircuit(vector<Node> nodes) {
+	for (int i = 0; i < nodes.size(); i++) {
+		if (nodes[i].deprecated == true) {
+			
+		}
+	}
+}
+void ConvertCStoVS(Node* node,vector<Node> nodes) {
+	nodes[node->Resistors[0].Terminal1].CurrentSource.pop_back();
+	nodes[node->Resistors[0].Terminal2].CurrentSource.pop_back();
+	if (node->VoltageSource[0].Terminal1 == node->Resistors[0].Terminal1 || node->VoltageSource[0].Terminal2 == node->Resistors[0].Terminal1) {
+		nodes[node->Resistors[0].Terminal1].Resistors.pop_back();
+		node->Resistors[0].Terminal1 = node->Number;
+	}
+	else {
+		nodes[node->Resistors[0].Terminal2].Resistors.pop_back();
+		node->Resistors[0].Terminal2 = node->Number;
+	}
+}
 //returns the vector of nodes with the voltages values
 //attached to each node
 void PerformNodeAnalysis(vector<Node> nodes) {
