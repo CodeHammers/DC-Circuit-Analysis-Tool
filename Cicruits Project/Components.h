@@ -7,6 +7,8 @@ struct Component
 	string Label;
 	int Terminal1;
 	int Terminal2;
+	char T1Sign;
+	char T2Sign;
 };
 
 struct Node

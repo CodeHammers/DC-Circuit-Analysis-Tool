@@ -47,6 +47,15 @@ void LoadFile(vector<NewNode>&Circuit, vector<Component>&Resistors, vector<Compo
 			cin >> value;
 			Helping.Label = TempName;
 
+			if (value < 0) {
+				Helping.T1Sign = '-';
+				Helping.T2Sign = '+';
+			}
+			else {
+				Helping.T1Sign = '+';
+				Helping.T2Sign = '-';
+			}
+
 			if (FirstAppear(TempName, Resistors, VoltageSources, CurrentSources)) {
 				Helping.Magnitude = value; Helping.Terminal1 = count;
 				Helping.Terminal2 = -1; 	firstAppear = true;

@@ -1,3 +1,13 @@
 ﻿  IO file.cpp
-  Cicruits Project.vcxproj -> C:\Users\Marshal Moamen\Documents\GitHub\Circuits-Project-2017\Debug\Cicruits Project.exe
-  Cicruits Project.vcxproj -> C:\Users\Marshal Moamen\Documents\GitHub\Circuits-Project-2017\Debug\Cicruits Project.pdb (Partial PDB)
+  Generating Code...
+  Compiling...
+  Source.cpp
+  NodeAnalysis.cpp
+f:\circuits project local\circuits-project-2017\cicruits project\nodeanalysis.cpp(40): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\nodeanalysis.cpp(51): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\nodeanalysis.cpp(96): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  LinearAlgebra.cpp
+  Cicruits Project.vcxproj -> F:\Circuits Project Local\Circuits-Project-2017\Debug\Cicruits Project.exe
+  Cicruits Project.vcxproj -> F:\Circuits Project Local\Circuits-Project-2017\Debug\Cicruits Project.pdb (Partial PDB)
