@@ -1,8 +1,5 @@
 ﻿  Source.cpp
-  NodeAnalysis.cpp
-d:\software_development\circuits-project-2017\cicruits project\nodeanalysis.cpp(40): warning C4018: '<': signed/unsigned mismatch
-  LinearAlgebra.cpp
+c:\users\marshal moamen\documents\github\circuits-project-2017\cicruits project\source.cpp(10): error C3861: 'LoadFile': identifier not found
   IO file.cpp
+c:\users\marshal moamen\documents\github\circuits-project-2017\cicruits project\io file.cpp(26): error C3861: 'UpgradeTerminal': identifier not found
   Generating Code...
-  Cicruits Project.vcxproj -> D:\Software_Development\Circuits-Project-2017\Debug\Cicruits Project.exe
-  Cicruits Project.vcxproj -> D:\Software_Development\Circuits-Project-2017\Debug\Cicruits Project.pdb (Partial PDB)

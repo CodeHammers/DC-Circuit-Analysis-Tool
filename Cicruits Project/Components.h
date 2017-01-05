@@ -27,24 +27,6 @@ struct NewNode
 	vector<Component *>CurrentSource;
 	vector<Component *>VoltageSource;
 };
-
-void LoadFile(vector<Node> &Circuit, vector<Component>&Resistors, vector<Component>&VoltageSources, vector<Component>&CurrentSources);
-
-int WhichNodeIsConnected(vector<Node>Circuit, int FirstNode, string name);
-
-void UpgradingTerminals(vector<Node>&Circuit);
-
-void UpgradingVectors(vector<Node>Circuit, vector<Component>&Resistors, vector<Component>&VoltageSources, vector<Component>&CurrentSources);
-
-vector <NewNode>TheCircuitIs(vector<Node>Circuit, vector<Component> &VoltageSources, vector<Component> &CurrentSources, vector<Component>&Resistors);
-
-void ConnectElementsToNode(vector<NewNode>&Circuit, vector<Component> &VoltageSources, vector<Component> &CurrentSources,
-	vector<Component>&Resistors, int i, vector<Component>Aux, int SizeOfNodes);
-
-int GetTheIndex(string name, vector<Component> Objects);
-
-bool FirstAppear(string name, vector<Component>Aux);
-
 bool isRef(Node* node);
 bool CheckEssential(Node* node);
 double CalculateG(Node* node);
