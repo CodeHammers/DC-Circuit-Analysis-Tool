@@ -1,5 +1,34 @@
-#pragma
+#pragma once
 #include "IO.h"
+void UpgradeTerminal(string Name, vector<Component>&Resistors, vector<Component>&VoltageSources, vector<Component>&CurrentSources, int NumOfNode)
+{
+	if (Name[0] == 'R')
+	{
+		int Size = Resistors.size();
+		for (int i = 0;i < Size;++i)
+			if (Resistors[i].Label == Name) {
+				Resistors[i].Terminal2 = NumOfNode;
+				return;
+			}
+	}
+	else if (Name[0] == 'E')
+	{
+		int Size = VoltageSources.size();
+		for (int i = 0;i < Size;++i)
+			if (VoltageSources[i].Label == Name) {
+				VoltageSources[i].Terminal2 = NumOfNode;
+				return;
+			}
+	}
+	else {
+		int Size = CurrentSources.size();
+		for (int i = 0;i < Size;++i)
+			if (CurrentSources[i].Label == Name) {
+				CurrentSources[i].Terminal2 = NumOfNode;
+				return;
+			}
+	}
+}
 void LoadFile(vector<NewNode>&Circuit, vector<Component>&Resistors, vector<Component>&VoltageSources, vector<Component>&CurrentSources)
 {
 	string TempName; float value; int Terminate; Component Helping;
@@ -82,33 +111,4 @@ int GetTheIndex(string name, vector<Component> Aux)
 		if (Aux[i].Label == name)
 			return i;
 	return -1;
-}
-void UpgradeTerminal(string Name, vector<Component>&Resistors, vector<Component>&VoltageSources, vector<Component>&CurrentSources, int NumOfNode)
-{
-	if (Name[0] == 'R')
-	{
-		int Size = Resistors.size();
-		for (int i = 0;i < Size;++i)
-			if (Resistors[i].Label == Name) {
-				Resistors[i].Terminal2 = NumOfNode;
-				return;
-			}
-	}
-	else if (Name[0] == 'E')
-	{
-		int Size = VoltageSources.size();
-		for (int i = 0;i < Size;++i)
-			if (VoltageSources[i].Label == Name) {
-				VoltageSources[i].Terminal2 = NumOfNode;
-				return;
-			}
-	}
-	else {
-		int Size = CurrentSources.size();
-		for (int i = 0;i < Size;++i)
-			if (CurrentSources[i].Label == Name) {
-				CurrentSources[i].Terminal2 = NumOfNode;
-				return;
-			}
-	}
 }

@@ -1,5 +1,3 @@
-﻿  Source.cpp
-c:\users\marshal moamen\documents\github\circuits-project-2017\cicruits project\source.cpp(10): error C3861: 'LoadFile': identifier not found
-  IO file.cpp
-c:\users\marshal moamen\documents\github\circuits-project-2017\cicruits project\io file.cpp(26): error C3861: 'UpgradeTerminal': identifier not found
-  Generating Code...
+﻿  IO file.cpp
+  Cicruits Project.vcxproj -> C:\Users\Marshal Moamen\Documents\GitHub\Circuits-Project-2017\Debug\Cicruits Project.exe
+  Cicruits Project.vcxproj -> C:\Users\Marshal Moamen\Documents\GitHub\Circuits-Project-2017\Debug\Cicruits Project.pdb (Partial PDB)
