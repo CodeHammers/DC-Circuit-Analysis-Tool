@@ -1,37 +1,51 @@
 #include "Components.h"
 //Builds G matrix 1/sumRes for all nodes
 MatrixXd BuildMatrixG(vector<Node> &nodes) {
-	MatrixXd matrixG(nodes.size(), nodes.size());
-	int i = 0; int j = 0;
-	for (std::vector<Node>::iterator outerIt = nodes.begin(); outerIt != nodes.end(); ++outerIt) {
-		if (!isRef(&(*outerIt))) {
-			for (std::vector<Node>::iterator innerIt = nodes.begin(); innerIt != nodes.end(); ++innerIt) {
-				if (!isRef(&(*innerIt))) {
-					matrixG(i, j) = CalculateMutualG(&(*outerIt), &(*innerIt));
-					j++;
+	int ActualSize = GetActualSize(nodes);
+	MatrixXd matrixG(ActualSize, ActualSize);//Bug : Actual size = node.size - DeprecatedCount		Number	1	int
+	int CarryForDeprecatedOnI = 0;
+	int CarryForDeprecatedOnJ = 0;
+	for (int i = 0; i < nodes.size(); i++) {
+		Node RowNode = nodes[i];
+		if (!RowNode.deprecated) {
+			for (int j = 0; j < nodes.size(); j++) {
+				Node OnRowNode = nodes[j];
+				if (!OnRowNode.deprecated) {
+					matrixG(i + CarryForDeprecatedOnI, j + CarryForDeprecatedOnJ) = CalculateMutualG(&RowNode, &OnRowNode);
+				}
+				else {
+					CarryForDeprecatedOnJ--;
 				}
 			}
-			j = 0;
-			i++;
+			CarryForDeprecatedOnJ = 0;
+		}
+		else {
+			CarryForDeprecatedOnI--;
 		}
 	}
 	matrixG = -matrixG;
 	matrixG.diagonal() = -matrixG.diagonal();
+	cout << endl << endl;
+	cout << " Matrix G" << endl;
+	cout << matrixG;
 	return matrixG;
 }
 //Builds Currents matrix 
 MatrixXd BuildMatrixI(vector<Node> &nodes) {
-	MatrixXd matrixI(nodes.size(), 1);
-	int i = 0; 
-	for (std::vector<Node>::iterator outerIt = nodes.begin(); outerIt != nodes.end(); ++outerIt) {
-		if (!isRef(&(*outerIt))) {
-			matrixI(i, 0) = CalculateCurrent(&(*outerIt));
-			i++;
-		}
-	}
+	int ActualSize = GetActualSize(nodes);
+	MatrixXd matrixI(ActualSize, 1);
+	int CarryForDeprecated = 0;
+	for (int i = 0; i < nodes.size(); i++)
+		if (!nodes[i].deprecated)
+			matrixI(i + CarryForDeprecated, 0) = CalculateCurrent(&nodes[i]);
+		else
+			CarryForDeprecated--;
+	cout << endl << endl;
+	cout << " Matrix I" << endl;
+	cout << matrixI;
 	return matrixI;
 }
 //Builds the required Voltage matrix
 MatrixXd GetMatrixV(MatrixXd G, MatrixXd I) {
-	return G.inverse() * I ;
+	return G.inverse() * I;
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "Libraries.h"
 
+
 struct Component
 {
 	float Magnitude;
@@ -10,25 +11,18 @@ struct Component
 	int T1Sign;
 	int T2Sign;
 };
-
 struct Node
 {
 	int Number;
 	double voltage;
 	bool deprecated;
+	bool isRef;
 	bool voltageSet;
-	vector<Component>Resistors;
-	vector<Component>CurrentSource;
-	vector<Component>VoltageSource;
+	vector<Component*>Resistors;
+	vector<Component*>CurrentSource;
+	vector<Component*>VoltageSource;
 };
 
-struct NewNode
-{
-	int Number;
-	vector<Component *>Resistors;
-	vector<Component *>CurrentSource;
-	vector<Component *>VoltageSource;
-};
 bool isRef(Node* node);
 bool CheckEssential(Node* node);
 double CalculateG(Node* node);
@@ -38,8 +32,16 @@ MatrixXd BuildMatrixG(vector<Node> &nodes);
 MatrixXd BuildMatrixI(vector<Node> &nodes);
 MatrixXd GetMatrixV(MatrixXd G, MatrixXd I);
 void BindVoltageValues(vector<Node> &nodes, MatrixXd matrixV);
+int GetBoundryNode(Component* cmp, Node * node);
 void PerformNodeAnalysis(vector<Node> &nodes);
 void ConvertVStoCS(Node* node, vector<Node> &nodes);
 void ConvertCircuit(vector<Node> &nodes);
-void DeConvertCircuit(vector<Node> &nodes);
-void RecoverNode(Node* node, vector<Node> &nodes);
+void DeConvertCircuit(vector<Node> nodes);
+void RollBackChangesToNode(Node* node, vector<Node> &nodes);
+void SetRefNode(vector<Node> &nodes);
+
+void LoadCircuit(vector<Node> &nodes);
+void LoadNode(vector<Node> &nodes, vector<Component*> &components, int count);
+bool FirstAppeared(string label, vector<Component*> &components, Node &node);
+void AddComponentToNode(Node &node, Component* &comp);
+int GetActualSize(vector<Node> nodes);

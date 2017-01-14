@@ -1,130 +1,73 @@
-#pragma once
-#include "IO.h"
-void UpgradeTerminal(string Name, vector<Component>&Resistors, vector<Component>&VoltageSources, vector<Component>&CurrentSources, int NumOfNode)
-{
-	if (Name[0] == 'R')
-	{
-		int Size = Resistors.size();
-		for (int i = 0;i < Size;++i)
-			if (Resistors[i].Label == Name) {
-				Resistors[i].Terminal2 = NumOfNode;
-				return;
-			}
-	}
-	else if (Name[0] == 'E')
-	{
-		int Size = VoltageSources.size();
-		for (int i = 0;i < Size;++i)
-			if (VoltageSources[i].Label == Name) {
-				VoltageSources[i].Terminal2 = NumOfNode;
-				return;
-			}
-	}
-	else {
-		int Size = CurrentSources.size();
-		for (int i = 0;i < Size;++i)
-			if (CurrentSources[i].Label == Name) {
-				CurrentSources[i].Terminal2 = NumOfNode;
-				return;
-			}
-	}
-}
-void LoadFile(vector<NewNode>&Circuit, vector<Component>&Resistors, vector<Component>&VoltageSources, vector<Component>&CurrentSources)
-{
-	string TempName; float value; int Terminate; Component Helping;
-	bool exit = false;
+#include "Components.h"
+
+void LoadCircuit(vector<Node> &nodes) {
+	vector<Component*> components;
+	string ToNextNode;
 	int count = 1;
-	while (!exit) {
-		NewNode Help;
-		cout << "Please Enter All Elements Connected to The Node # " << count << "\n";
-		cin >> Terminate;
-		if (Terminate != 1) break;
-		while (1) {
+	cout << "type end to start a new node" << endl;
+	do {
+		cout << "Node #" << count << endl;
+		LoadNode(nodes, components, count);
+		count++;
+		cout << "do you want to continue to node #" << count << " ?(Y/N)" << endl;
+		cin >> ToNextNode;
+	} while (ToNextNode == "Y");
 
-			bool firstAppear = true;
-			cin >> TempName;
-			if (TempName == "-1") break;
-			cin >> value;
-			Helping.Label = TempName;
-
-			if (Helping.Label == "R") {
-				Helping.T1Sign = 1;
-				Helping.T2Sign = 1;
+}
+void LoadNode(vector<Node> &nodes, vector<Component*> &components, int count) {
+	string label;
+	Node node;
+	node.deprecated = false;
+	node.voltageSet = false;
+	node.isRef = false;
+	node.Number = count - 1;
+	cin >> label;
+	while (label != "end") {
+		if (FirstAppeared(label, components, node)) {
+			Component* comp = new Component();
+			comp->Label = label;
+			cin >> comp->Magnitude;
+			comp->Terminal1 = node.Number;
+			if (comp->Magnitude < 0) {
+				comp->T1Sign = -1;
+				comp->T2Sign = 1;
 			}
 			else {
-				if (value < 0) {
-					Helping.T1Sign = -1;
-					Helping.T2Sign = 1;
-					value *= -1;
-				}
-				else{
-					Helping.T1Sign = 1;
-					Helping.T2Sign = -1;
-				}
+				comp->T1Sign = 1;
+				comp->T2Sign = -1;
 			}
-				
-			if (FirstAppear(TempName, Resistors, VoltageSources, CurrentSources)) {
-				Helping.Magnitude = value; Helping.Terminal1 = count;
-				Helping.Terminal2 = -1; 	firstAppear = true;
-			}
-			else
-				UpgradeTerminal(TempName, Resistors, VoltageSources, CurrentSources, count), firstAppear = false;
-
-			if (TempName[0] == 'R')
-			{
-				if (firstAppear)
-					Resistors.push_back(Helping);
-				Help.Resistors.push_back(&Resistors[GetTheIndex(TempName, Resistors)]);
-			}
-			else if (TempName[0] == 'E')
-			{
-				if (firstAppear)
-					VoltageSources.push_back(Helping);
-				Help.VoltageSource.push_back(&VoltageSources[GetTheIndex(Helping.Label, VoltageSources)]);
-			}
-			else
-			{
-				if (firstAppear)
-					CurrentSources.push_back(Helping);
-				Help.CurrentSource.push_back(&CurrentSources[GetTheIndex(Helping.Label, CurrentSources)]);
-			}
+			components.push_back(comp);
+			AddComponentToNode(node, comp);
 		}
-		Help.Number = count;
-		Circuit.push_back(Help);
-		count++;
+		cin >> label;
 	}
+	nodes.push_back(node);
 }
-bool FirstAppear(string name, vector<Component>Resistors, vector<Component>VoltageSources, vector<Component>CurrentSources)
-{
-
-	if (name[0] == 'R')
-	{
-		int Size = Resistors.size();
-		for (int i = 0;i < Size;++i)
-			if (Resistors[i].Label == name)
-				return false;
-	}
-	else if (name[0] == 'E')
-	{
-		int Size = VoltageSources.size();
-		for (int i = 0;i < Size;++i)
-			if (VoltageSources[i].Label == name)
-				return false;
-	}
-	else
-	{
-		int Size = CurrentSources.size();
-		for (int i = 0;i < Size;++i)
-			if (CurrentSources[i].Label == name)
-				return false;
+bool FirstAppeared(string label, vector<Component*> &components, Node &node) {
+	int knownValue;
+	for (int i = 0; i < components.size(); i++) {
+		if (components[i]->Label == label) {
+			components[i]->Terminal2 = node.Number;
+			cin >> knownValue;
+			AddComponentToNode(node, components[i]);
+			return false;
+		}
 	}
 	return true;
 }
-int GetTheIndex(string name, vector<Component> Aux)
-{
-	int Size = Aux.size();
-	for (int i = 0;i < Size;++i)
-		if (Aux[i].Label == name)
-			return i;
-	return -1;
+void AddComponentToNode(Node &node, Component* &comp) {
+	switch (comp->Label[0])
+	{
+	case 'R':
+		node.Resistors.push_back(comp);
+		break;
+	case 'J':
+		node.CurrentSource.push_back(comp);
+		break;
+	case 'V':
+		node.VoltageSource.push_back(comp);
+		break;
+	default:
+		break;
+	}
 }
