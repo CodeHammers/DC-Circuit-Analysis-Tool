@@ -1,7 +1,6 @@
 #include "Components.h"
 
-void LoadCircuit(vector<Node> &nodes) {
-	vector<Component*> components;
+void LoadCircuit(vector<Node> &nodes,vector<Component*> &components) {
 	string ToNextNode;
 	int count = 1;
 	cout << "type end to start a new node" << endl;
@@ -28,6 +27,7 @@ void LoadNode(vector<Node> &nodes, vector<Component*> &components, int count) {
 			comp->Label = label;
 			cin >> comp->Magnitude;
 			comp->Terminal1 = node.Number;
+			comp->Terminal2 = -1;
 			if (comp->Magnitude < 0) {
 				comp->T1Sign = -1;
 				comp->T2Sign = 1;

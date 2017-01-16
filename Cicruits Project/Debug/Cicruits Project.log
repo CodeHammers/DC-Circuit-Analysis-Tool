@@ -1,19 +1,19 @@
 ﻿  Source.cpp
   NodeAnalysis.cpp
-e:\software_development\circuits-project-2017\cicruits project\nodeanalysis.cpp(14): warning C4018: '<': signed/unsigned mismatch
-e:\software_development\circuits-project-2017\cicruits project\nodeanalysis.cpp(23): warning C4018: '<': signed/unsigned mismatch
-e:\software_development\circuits-project-2017\cicruits project\nodeanalysis.cpp(33): warning C4018: '<': signed/unsigned mismatch
-e:\software_development\circuits-project-2017\cicruits project\nodeanalysis.cpp(48): warning C4018: '<': signed/unsigned mismatch
-e:\software_development\circuits-project-2017\cicruits project\nodeanalysis.cpp(59): warning C4018: '<': signed/unsigned mismatch
-e:\software_development\circuits-project-2017\cicruits project\nodeanalysis.cpp(101): warning C4018: '<': signed/unsigned mismatch
-e:\software_development\circuits-project-2017\cicruits project\nodeanalysis.cpp(122): warning C4018: '<': signed/unsigned mismatch
-e:\software_development\circuits-project-2017\cicruits project\nodeanalysis.cpp(129): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(14): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(23): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(33): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(48): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(59): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(101): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(128): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(135): warning C4018: '<': signed/unsigned mismatch
   LinearAlgebra.cpp
-e:\software_development\circuits-project-2017\cicruits project\linearalgebra.cpp(8): warning C4018: '<': signed/unsigned mismatch
-e:\software_development\circuits-project-2017\cicruits project\linearalgebra.cpp(11): warning C4018: '<': signed/unsigned mismatch
-e:\software_development\circuits-project-2017\cicruits project\linearalgebra.cpp(38): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\linearalgebra.cpp(8): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\linearalgebra.cpp(11): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\linearalgebra.cpp(38): warning C4018: '<': signed/unsigned mismatch
   IO file.cpp
-e:\software_development\circuits-project-2017\cicruits project\io file.cpp(48): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\io file.cpp(47): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
-  Cicruits Project.vcxproj -> E:\Software_Development\Circuits-Project-2017\Debug\Cicruits Project.exe
-  Cicruits Project.vcxproj -> E:\Software_Development\Circuits-Project-2017\Debug\Cicruits Project.pdb (Partial PDB)
+  Cicruits Project.vcxproj -> E:\Software_Development\C++\Circuits-Project-2017\Debug\Cicruits Project.exe
+  Cicruits Project.vcxproj -> E:\Software_Development\C++\Circuits-Project-2017\Debug\Cicruits Project.pdb (Partial PDB)

@@ -116,6 +116,12 @@ void RollBackChangesToNode(Node* node, vector<Node> &nodes) {
 	nodes[BoundryFromBattSide].Resistors.pop_back();
 	nodes[BoundryFromBattSide].CurrentSource.pop_back();
 	nodes[BoundryFromRessSide].CurrentSource.pop_back();
+	node->voltageSet = true;
+	if(Battery->Terminal1 == BoundryFromBattSide)
+		node->voltage = nodes[BoundryFromBattSide].voltage - Battery->T1Sign * Battery->Magnitude;
+	else
+		node->voltage = nodes[BoundryFromBattSide].voltage - Battery->T2Sign * Battery->Magnitude;
+
 }
 int GetActualSize(vector<Node> nodes) {
 	int actualSize = nodes.size();
@@ -139,7 +145,6 @@ void SetRefNode(vector<Node> &nodes) {
 ////returns the vector of nodes with the voltages values
 //attached to each node
 void PerformNodeAnalysis(vector<Node> &nodes) {
-
 	ConvertCircuit(nodes);
 	int ActualSize = GetActualSize(nodes);
 	MatrixXd matG(ActualSize - 1, ActualSize - 1);

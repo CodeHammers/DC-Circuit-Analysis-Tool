@@ -40,8 +40,10 @@ void DeConvertCircuit(vector<Node> nodes);
 void RollBackChangesToNode(Node* node, vector<Node> &nodes);
 void SetRefNode(vector<Node> &nodes);
 
-void LoadCircuit(vector<Node> &nodes);
+void LoadCircuit(vector<Node> &nodes,vector<Component*> &components);
 void LoadNode(vector<Node> &nodes, vector<Component*> &components, int count);
 bool FirstAppeared(string label, vector<Component*> &components, Node &node);
 void AddComponentToNode(Node &node, Component* &comp);
 int GetActualSize(vector<Node> nodes);
+
+bool CheckForOC(vector<Component*> components);
