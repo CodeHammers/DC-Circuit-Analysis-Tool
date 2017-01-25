@@ -34,10 +34,10 @@ MatrixXd GetMatrixV(MatrixXd G, MatrixXd I);
 void BindVoltageValues(vector<Node> &nodes, MatrixXd matrixV);
 int GetBoundryNode(Component* cmp, Node * node);
 void PerformNodeAnalysis(vector<Node> &nodes);
-void ConvertVStoCS(Node* node, vector<Node> &nodes);
+void ConvertVStoCS(Node* &node, vector<Node> &nodes);
 void ConvertCircuit(vector<Node> &nodes);
-void DeConvertCircuit(vector<Node> nodes);
-void RollBackChangesToNode(Node* node, vector<Node> &nodes);
+void DeConvertCircuit(vector<Node> &nodes);
+void RollBackChangesToNode(Node* &node, vector<Node> &nodes);
 void SetRefNode(vector<Node> &nodes);
 
 void LoadCircuit(vector<Node> &nodes,vector<Component*> &components);

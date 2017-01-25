@@ -22,13 +22,15 @@ void LoadNode(vector<Node> &nodes, vector<Component*> &components, int count) {
 	node.Number = count - 1;
 	cin >> label;
 	while (label != "end") {
-		if (FirstAppeared(label, components, node)) {
+		bool flag = FirstAppeared(label, components, node);
+		if (flag) {
 			Component* comp = new Component();
 			comp->Label = label;
 			cin >> comp->Magnitude;
 			comp->Terminal1 = node.Number;
 			comp->Terminal2 = -1;
 			if (comp->Magnitude < 0) {
+				comp->Magnitude *= -1;
 				comp->T1Sign = -1;
 				comp->T2Sign = 1;
 			}
@@ -55,6 +57,7 @@ bool FirstAppeared(string label, vector<Component*> &components, Node &node) {
 	}
 	return true;
 }
+
 void AddComponentToNode(Node &node, Component* &comp) {
 	switch (comp->Label[0])
 	{

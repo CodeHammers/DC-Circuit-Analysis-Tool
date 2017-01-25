@@ -1,6 +1,5 @@
 #include "Components.h"
 
-
 bool CheckEssential(Node* node) {
 	//Please note : voltageSources should be zero  in node analysis , otherwise you should know what you are doing
 	int totalSize = node->Resistors.size() + node->CurrentSource.size() + node->VoltageSource.size();
@@ -17,7 +16,7 @@ double CalculateG(Node* node) {
 }
 //calculates G  for resistors  between two nodes
 double CalculateMutualG(Node* node1, Node* node2) {
-	if (node1 == node2)
+	if (node1->Number == node2->Number)
 		return CalculateG(node1);
 	double TotalG = 0;
 	for (int i = 0; i < node1->Resistors.size(); i++) {
@@ -43,6 +42,7 @@ double CalculateCurrent(Node* node) {
 bool isRef(Node* node) {
 	return false;
 }
+
 void BindVoltageValues(vector<Node> &nodes, MatrixXd matrixV) {
 	int matIndex = 0;
 	for (int i = 0; i < nodes.size(); i++)
@@ -60,12 +60,13 @@ void ConvertCircuit(vector<Node> &nodes) {
 		if (!CheckEssential(&nodes[i]) && !nodes[i].isRef) {
 			bool validToConvert = !(nodes[i].Resistors.empty() || nodes[i].VoltageSource.empty());
 			if (validToConvert) {
-				ConvertVStoCS(&nodes[i], nodes);
+				Node* N = &nodes[i];
+				ConvertVStoCS(N, nodes);
 			}
 		}
 	}
 }
-void ConvertVStoCS(Node* node, vector<Node> &nodes) {
+void ConvertVStoCS(Node* &node, vector<Node> &nodes) {
 	node->deprecated = true;
 	Component* CurrentSource = new Component();
 	Component* Battery = node->VoltageSource[0];
@@ -97,14 +98,15 @@ int GetBoundryNode(Component* cmp, Node * node) {
 		return cmp->Terminal2;
 	return cmp->Terminal1;
 }
-void DeConvertCircuit(vector<Node> nodes) {
+void DeConvertCircuit(vector<Node> &nodes) {
 	for (int i = 0; i < nodes.size(); i++) {
 		if (nodes[i].deprecated == true && !nodes[i].isRef) {
-			RollBackChangesToNode(&nodes[i], nodes);
+			Node* N = &nodes[i];
+			RollBackChangesToNode(N, nodes);
 		}
 	}
 }
-void RollBackChangesToNode(Node* node, vector<Node> &nodes) {
+void RollBackChangesToNode(Node* &node, vector<Node> &nodes) {
 	Component* Battery = node->VoltageSource[0];
 	Component* Resistor = node->Resistors[0];
 	int BoundryFromBattSide = GetBoundryNode(Battery, node);
