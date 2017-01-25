@@ -2,6 +2,8 @@
 
 int main()
 {
+	ofstream out;
+	out.open("output.txt", ios::out);
 	vector<Node> nodes;
 	vector<Component*> components;
 	LoadCircuit(nodes, components);
