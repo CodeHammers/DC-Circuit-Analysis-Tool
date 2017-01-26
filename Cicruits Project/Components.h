@@ -45,5 +45,8 @@ void LoadNode(vector<Node> &nodes, vector<Component*> &components, int count);
 bool FirstAppeared(string label, vector<Component*> &components, Node &node);
 void AddComponentToNode(Node &node, Component* &comp);
 int GetActualSize(vector<Node> nodes);
-
+double CalculateCurrent(Node* node, string label);
+MatrixXd BuildMatrixI(vector<Node> &nodes, string label);
 bool CheckForOC(vector<Component*> components);
+
+void PerformSuperPosition(vector<Node> &nodes, string label);

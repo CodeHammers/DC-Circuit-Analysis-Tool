@@ -45,6 +45,22 @@ MatrixXd BuildMatrixI(vector<Node> &nodes) {
 	cout << matrixI;
 	return matrixI;
 }
+MatrixXd BuildMatrixI(vector<Node> &nodes,string label) {
+	if (label[0] == 'V')
+		label = "J" + label;
+	int ActualSize = GetActualSize(nodes);
+	MatrixXd matrixI(ActualSize, 1);
+	int CarryForDeprecated = 0;
+	for (int i = 0; i < nodes.size(); i++)
+		if (!nodes[i].deprecated)
+			matrixI(i + CarryForDeprecated, 0) = CalculateCurrent(&nodes[i],label);
+		else
+			CarryForDeprecated--;
+	cout << endl << endl;
+	cout << " Matrix I" << endl;
+	cout << matrixI;
+	return matrixI;
+}
 //Builds the required Voltage matrix
 MatrixXd GetMatrixV(MatrixXd G, MatrixXd I) {
 	return G.inverse() * I;

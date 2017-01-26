@@ -38,6 +38,19 @@ double CalculateCurrent(Node* node) {
 	}
 	return TotalI;
 }
+double CalculateCurrent(Node* node,string label) {
+	double TotalI = 0;
+	for (int i = 0; i < node->CurrentSource.size(); i++) {
+		Component* CS = node->CurrentSource[i];
+		if (CS->Label == label) {
+			if (CS->Terminal1 == node->Number)
+				TotalI += CS->Magnitude * CS->T1Sign;
+			else
+				TotalI += CS->Magnitude * CS->T2Sign;
+		}
+	}
+	return TotalI;
+}
 //TODO: Function to distinguish the ref node 
 bool isRef(Node* node) {
 	return false;
@@ -71,7 +84,7 @@ void ConvertVStoCS(Node* &node, vector<Node> &nodes) {
 	Component* CurrentSource = new Component();
 	Component* Battery = node->VoltageSource[0];
 	Component* Resistor = node->Resistors[0];
-	CurrentSource->Label = "SayedTito+MoamenDarwish";
+	CurrentSource->Label = "J"+Battery->Label;
 	CurrentSource->Magnitude = Battery->Magnitude / Resistor->Magnitude;
 	int BoundryFromRessSide = GetBoundryNode(Resistor, node);
 	int BoundryFromBattSide = GetBoundryNode(Battery, node);
@@ -155,6 +168,23 @@ void PerformNodeAnalysis(vector<Node> &nodes) {
 	SetRefNode(nodes);
 	matG = BuildMatrixG(nodes);
 	matI = BuildMatrixI(nodes);
+	matV = GetMatrixV(matG, matI);
+	BindVoltageValues(nodes, matV);
+	DeConvertCircuit(nodes);
+	for (int i = 0; i < nodes.size(); i++) {
+		if (nodes[i].deprecated)
+			nodes[i].deprecated = false;
+	}
+}
+void PerformSuperPosition(vector<Node> &nodes,string label) {
+	ConvertCircuit(nodes);
+	int ActualSize = GetActualSize(nodes);
+	MatrixXd matG(ActualSize - 1, ActualSize - 1);
+	MatrixXd matI(ActualSize - 1, 1);
+	MatrixXd matV(ActualSize - 1, 1);
+	SetRefNode(nodes);
+	matG = BuildMatrixG(nodes);
+	matI = BuildMatrixI(nodes,label);
 	matV = GetMatrixV(matG, matI);
 	BindVoltageValues(nodes, matV);
 	DeConvertCircuit(nodes);
