@@ -10,6 +10,13 @@ int main()
 	vector<Component*> components;
 	LoadCircuit(nodes, components);
 	PerformNodeAnalysis(nodes);
+	/*
+	string label;
+	cout<<"Choose Desired Element for Vthiev"<<endl;
+	cin>>label;
+	cout<<endl<<endl;
+	cout<<CalcuateVThevenin(label,components,nodes);
+	*/
 	Solve(out, nodes);
 	cin.get();
 	cin.get();

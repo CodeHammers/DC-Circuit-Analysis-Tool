@@ -190,3 +190,63 @@ void Solve(ofstream &out,vector<Node> &nodes)
 	cout << "An output file has been produced with all the needed reponses" << endl;
 	cout << "END" << endl;
 }
+double CalcuateVThevenin(string label, vector<Component*> components, vector<Node> nodes) {
+	Node* node1, *node2;
+	Component* comp = NULL;
+	int pupput, pos1, pos2;
+	for (int i = 0; i < components.size(); i++) {
+		if (components[i]->Label == label) {
+			comp = components[i];
+		}
+	}
+	node1 = &nodes[comp->Terminal1];
+	node2 = &nodes[comp->Terminal2];
+	switch (label[0]) {
+	case 'V':
+		for (int i = 0; i < node1->VoltageSource.size(); i++) {
+			if (node1->VoltageSource[i]->Label == label) {
+				pos1 = i;
+			}
+		}
+		for (int i = 0; i < node2->VoltageSource.size(); i++) {
+			if (node2->VoltageSource[i]->Label == label) {
+				pos2 = i;
+			}
+		}
+		node1->VoltageSource.erase(node1->VoltageSource.begin() + pos1);
+		node2->VoltageSource.erase(node2->VoltageSource.begin() + pos1);
+		break;
+	case 'J':
+		for (int i = 0; i < node1->CurrentSource.size(); i++) {
+			if (node1->CurrentSource[i]->Label == label) {
+				pos1 = i;
+			}
+		}
+		for (int i = 0; i < node2->CurrentSource.size(); i++) {
+			if (node2->CurrentSource[i]->Label == label) {
+				pos2 = i;
+			}
+		}
+		node1->CurrentSource.erase(node1->CurrentSource.begin() + pos1);
+		node2->CurrentSource.erase(node2->CurrentSource.begin() + pos1);
+		break;
+	case 'R':
+		for (int i = 0; i < node1->Resistors.size(); i++) {
+			if (node1->Resistors[i]->Label == label) {
+				pos1 = i;
+			}
+		}
+		for (int i = 0; i < node2->Resistors.size(); i++) {
+			if (node2->Resistors[i]->Label == label) {
+				pos2 = i;
+			}
+		}
+		node1->Resistors.erase(node1->Resistors.begin() + pos1);
+		node2->Resistors.erase(node2->Resistors.begin() + pos2);
+		break;
+	default:
+		throw new exception();
+	}
+	PerformNodeAnalysis(nodes);
+	return CalculateVD(node1->Number + 1, node2->Number + 1, nodes);
+}
