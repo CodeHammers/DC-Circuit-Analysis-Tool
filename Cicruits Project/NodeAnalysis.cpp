@@ -158,4 +158,8 @@ void PerformNodeAnalysis(vector<Node> &nodes) {
 	matV = GetMatrixV(matG, matI);
 	BindVoltageValues(nodes, matV);
 	DeConvertCircuit(nodes);
+	for (int i = 0; i < nodes.size(); i++) {
+		if (nodes[i].deprecated)
+			nodes[i].deprecated = false;
+	}
 }

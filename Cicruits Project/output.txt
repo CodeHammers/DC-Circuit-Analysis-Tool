@@ -1,0 +1,13 @@
+The current passing in R1 = 0.0105
+The current passing in R2 = 0.0015
+The current passing in R3 = 0.006
+The voltage between node 1 and node 2 = 126
+The current passing in R1 = 0.0105
+The voltage between node 3 and node 2 = 90
+The current passing in R2 = 0.0015
+The voltage between node 1 and node 3 = 36
+The power in R1 = 1.323
+The current passing in V1 = 0.0105
+The power in V1 = 0.378
+The power in J1 = 1.62
+The voltage between node 2and node 3 = 90

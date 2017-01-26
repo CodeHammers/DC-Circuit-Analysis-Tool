@@ -15,7 +15,7 @@ void LoadCircuit(vector<Node> &nodes,vector<Component*> &components) {
 }
 void LoadNode(vector<Node> &nodes, vector<Component*> &components, int count) {
 	string label;
-	Node node;
+	Node node; 
 	node.deprecated = false;
 	node.voltageSet = false;
 	node.isRef = false;
@@ -45,8 +45,9 @@ void LoadNode(vector<Node> &nodes, vector<Component*> &components, int count) {
 	}
 	nodes.push_back(node);
 }
+
 bool FirstAppeared(string label, vector<Component*> &components, Node &node) {
-	int knownValue;
+	float knownValue;
 	for (int i = 0; i < components.size(); i++) {
 		if (components[i]->Label == label) {
 			components[i]->Terminal2 = node.Number;
@@ -72,5 +73,29 @@ void AddComponentToNode(Node &node, Component* &comp) {
 		break;
 	default:
 		break;
+	}
+}
+
+void Queries(ifstream &input,queue<string> &CurrentResquest, queue<string> &VoltageResquest,
+	         queue<string> &PowerResquest)
+{
+	int CurrentReqNum, VoltageReqNum, PowerReqNum; string element;
+
+	input >> CurrentReqNum;
+	for (int i = 0; i < CurrentReqNum; i++) {
+		input >> element;
+		CurrentResquest.push(element);
+	}
+
+	input >> VoltageReqNum;
+	for (int i = 0; i < VoltageReqNum; i++) {
+		input >> element;
+		VoltageResquest.push(element);
+	}
+
+	input >> PowerReqNum;
+	for (int i = 0; i < PowerReqNum; i++) {
+		input >> element;
+		PowerResquest.push(element);
 	}
 }

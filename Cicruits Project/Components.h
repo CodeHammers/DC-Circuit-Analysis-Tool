@@ -1,7 +1,6 @@
 #pragma once
 #include "Libraries.h"
 
-
 struct Component
 {
 	float Magnitude;
@@ -22,6 +21,7 @@ struct Node
 	vector<Component*>CurrentSource;
 	vector<Component*>VoltageSource;
 };
+
 
 bool isRef(Node* node);
 bool CheckEssential(Node* node);

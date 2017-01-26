@@ -77,7 +77,7 @@ double CalculatePower(string element, vector<Node>nodes)
 	}
 
 	if (element[0] == 'V') {
-		double Current = VoltageSourceCurrent(element, nodes,true);
+		double Current = VoltageSourceCurrent(element, nodes);
 		double Voltage = nodes[x].VoltageSource[y]->Magnitude;
 
 		Power = Voltage*Current;
@@ -106,13 +106,12 @@ double CalculatePower(string element, vector<Node>nodes)
 }
 
 
-double VoltageSourceCurrent(string element, vector<Node>nodes, bool search)
+double VoltageSourceCurrent(string element, vector<Node>nodes)
 {
 	int x, y, TV1, TV2, minSize, TargetNode;
 
-	if(!search)
-		if (!SearchElement(element, nodes, x, y))
-			cout << "Error, element wasn't found" << endl;
+	if (!SearchElement(element, nodes, x, y))
+		cout << "Error, element wasn't found" << endl;
 
 	TV1 = nodes[x].VoltageSource[y]->Terminal1;
 	TV2 = nodes[x].VoltageSource[y]->Terminal2; 
@@ -131,4 +130,63 @@ double VoltageSourceCurrent(string element, vector<Node>nodes, bool search)
 	double Current = (double)VD/(double)nodes[TargetNode].Resistors[0]->Magnitude;
 
 	return Current;
+}
+
+
+void Solve(ofstream &out,vector<Node> &nodes)
+{
+	double current, voltage, power; int T1, T2;
+	string element, state, response,dueTo, more = "Y";
+
+	while (more != "N") {
+		cout << "Enter the type of response you are interested in" << endl;
+		cin >> response;
+
+		if (response[0] == 'I') {
+			cin >> state;
+			if (state == "gen") {
+				cin >> element;
+				if (element[0] == 'R')
+					current = ResistorCurrent(element, nodes);
+				else if (element[0] == 'V')
+					current = VoltageSourceCurrent(element, nodes);
+			}
+			else if (state == "spe") {
+				cin >> element >> dueTo;
+				//to be done later, superposition.
+			}
+			cout << "The current passing in " << element << " = " << current << endl;
+			out << "The current passing in " << element << " = " << current << endl;
+		}
+
+		else if (response[0] == 'V') {
+			cin >> state;
+			if (state == "gen") {
+				cin >> T1 >> T2;
+				voltage = CalculateVD(T1, T2, nodes);
+			}
+			else if (state == "spe") {
+				cin >> T1 >> T2 >> dueTo;
+				//to be done later, superposition.
+			}
+			cout << "The voltage between node " << T1 << "and node " << T2 << " = " << voltage << endl;
+			out << "The voltage between node " << T1 << "and node " << T2 << " = " << voltage << endl;
+		}
+
+		else if (response[0] == 'P') {
+			cin >> element;
+			power = CalculatePower(element, nodes);
+			cout << "The power in " << element << " = " << power << endl;
+			out << "The power in " << element << " = " << power << endl;
+		}
+
+		else if (response == "Rmax") {
+			cin >> state >> element;
+			// then stash state "not needed here" and then call on Max power.
+		}
+		cout << "Want to get more responses ? Y or N" << endl;
+		cin >> more;
+	}
+	cout << "An output file has been produced with all the needed reponses" << endl;
+	cout << "END" << endl;
 }

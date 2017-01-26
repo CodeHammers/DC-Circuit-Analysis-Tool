@@ -9,4 +9,6 @@ double ResistorCurrent(string resistor, vector<Node>nodes);
 
 double CalculatePower(string element, vector<Node>nodes);
 
-double VoltageSourceCurrent(string element, vector<Node>nodes, bool search);
+double VoltageSourceCurrent(string element, vector<Node>nodes);
+
+void Solve(ofstream &out, vector<Node> &nodes);

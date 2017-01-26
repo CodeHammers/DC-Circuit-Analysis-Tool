@@ -1,0 +1,363 @@
+made up problem
+
+R1 10 
+R2 10 
+end
+Y
+
+R2 10 
+R3 10
+end
+Y
+
+R3 10
+V1 -20
+end
+Y
+
+V1 20
+R1 10
+end
+N
+
+---------
+problem p.101
+
+V1 40 
+R1 2
+end
+Y
+
+R1 2
+R2 8
+R3 6
+end 
+Y
+
+R3 6
+R4 4
+R5 6 
+end
+Y
+
+R4 4
+V2 20 
+end
+Y
+
+V1 -40
+R2 8
+R5 6
+V2 -20
+end
+N
+
+-------------
+Assessment problem p.95
+
+J1 15
+R1 60 
+R2 15
+R3 5
+end
+Y
+
+R3 5
+R4 2
+J2 -5
+end
+Y
+
+J1 -15
+R1 60
+R2 15
+R4 2
+J2 5
+end
+N
+
+------
+example problem page 103
+
+V1 100 
+R1 3
+R3 10
+end
+Y
+
+R1 3
+R2 2
+J1 5
+end
+Y
+
+V2 50
+R2 2
+R3 10
+end 
+Y
+
+V1 -100 
+R4 6
+end
+Y
+
+R4 6
+R5 4 
+J1 -5
+end
+Y
+
+R5 4 
+V2 -50
+end
+N
+
+------------
+
+R3 3 
+V1 30 
+end
+Y
+
+R3 3 
+R4 8
+R2 2
+end
+Y
+
+R4 8
+R6 5
+J1 16
+end
+Y
+
+V1 -30
+R1 6
+end
+Y
+
+R1 6
+R2 2 
+R5 4
+end
+Y
+
+R5 4
+R6 5
+J1 -16
+end
+N
+
+-------------
+thev.
+
+R1 2
+end
+Y
+
+R1 2
+V3 1
+R3 6
+end 
+Y
+
+R3 6
+R4 4
+R5 6 
+end
+Y
+
+R4 4 
+end
+Y
+
+R5 6
+R6 1
+end
+Y
+
+V3 -1
+R6 1 
+end
+N
+------------
+J1 15 
+R1 8 
+R2 2 
+end
+Y
+
+R2 2 
+R3 12 
+R5 1 
+end 
+Y
+
+J1 -15
+R1 8
+R4 10
+end
+Y
+
+R4 10
+R3 12
+V1 -1
+end
+Y
+
+R5 1
+V1 1 
+end
+N
+
+--------
+theven working case "sources disabled"
+
+R4 2 
+R1 8
+end
+Y
+
+R1 8 
+R2 10
+end
+Y
+
+R2 10 
+R3 12 
+V1 -1
+end
+Y
+
+R4 2
+R3 12
+R5 1
+end
+Y
+
+R5 1
+V1 1
+end
+N
+
+--------
+R4 2 
+R1 8
+end
+Y
+
+R1 8 
+R2 10
+end
+Y
+
+R2 10 
+R3 12 
+end
+Y
+
+R4 2
+R3 12
+end
+N
+
+---------
+testing v theven
+
+J1 15 
+R1 8 
+R2 2 
+end
+Y
+
+R2 2 
+R3 12  
+end 
+Y
+
+J1 -15
+R1 8
+R4 10
+end
+Y
+
+R4 10
+R3 12
+end
+N
+
+----------
+R1 2
+V1 -1
+R4 6
+end
+Y
+
+R1 2
+R2 1 
+R3 6
+end
+Y
+
+R3 6
+R4 6
+R5 4
+end
+Y
+
+R5 4 
+end
+Y
+
+R2 1
+V1 1
+end
+N
+
+---------
+J1 15 
+R1 8 
+R2 2 
+end
+Y
+
+R2 2 
+R3 12  
+end 
+Y
+
+J1 -15
+R1 8
+R4 10
+end
+Y
+
+R4 10
+R3 12
+end
+N
+
+-----------
+edge case
+
+V1 -36
+R1 12000
+end
+Y
+
+R1 12000 
+J1 0.018
+R2 60000
+R3 15000
+end
+Y
+
+V1 36
+J1 -0.018
+R2 60000
+R3 15000
+end
+N
+
+
