@@ -1,5 +1,4 @@
 #include "Responses.h"
-
 bool SearchElement(string element, vector<Node>nodes, int &x, int &y)
 {
 	if (element[0] == 'V') {
