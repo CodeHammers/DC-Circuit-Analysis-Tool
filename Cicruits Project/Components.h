@@ -21,8 +21,9 @@ struct Node
 	vector<Component*>CurrentSource;
 	vector<Component*>VoltageSource;
 };
-
-
+void SpecialSetRef(vector<Node>&nodes, int B);
+double ResistorCurrent(string resistor, vector<Node>nodes);
+double GettinTheveninResistance(vector<Node>Circuits, int A, int B, string name);
 bool isRef(Node* node);
 bool CheckEssential(Node* node);
 double CalculateG(Node* node);

@@ -1,4 +1,51 @@
 #include "Components.h"
+void SpecialSetRef(vector<Node>&nodes,int B)
+{
+		if (!nodes[B].deprecated) {
+			nodes[B].deprecated = true;
+			nodes[B].isRef = true;
+			nodes[B].voltage = 0;
+			nodes[B].voltageSet = true;
+			return;
+		}
+}
+double GettinTheveninResistance(vector<Node>Circuits, int A, int B, string name)
+{
+	for (int i = 0; i < Circuits[A].Resistors.size(); ++i)
+		if (Circuits[A].Resistors[i]->Label == name)
+			Circuits[A].Resistors.erase(Circuits[A].Resistors.begin() + i);
+
+	for (int i = 0; i < Circuits[B].Resistors.size(); ++i)
+		if (Circuits[B].Resistors[i]->Label == name)
+			Circuits[B].Resistors.erase(Circuits[B].Resistors.begin() + i);
+
+
+	// R Load Deleted 
+	Node NewNode;
+	NewNode.Number = Circuits.size();
+	NewNode.isRef = NewNode.deprecated = NewNode.voltageSet = false;
+	Component *VTemp = new Component();
+	VTemp->Label = "VTemp";  VTemp->Magnitude = 1;
+	VTemp->Terminal1 = NewNode.Number;	VTemp->Terminal2 = B;
+	VTemp->T1Sign = 1; VTemp->T2Sign = -1;
+
+	Component *RTemp = new Component();
+	RTemp->Label = "RTemp"; RTemp->Magnitude = 1;
+	RTemp->T1Sign = RTemp->T2Sign = 1;
+	RTemp->Terminal1 = A; RTemp->Terminal2 = NewNode.Number;
+
+	Circuits.push_back(NewNode);
+	Circuits[A].Resistors.push_back(RTemp);
+	Circuits[NewNode.Number].VoltageSource.push_back(VTemp);
+	Circuits[NewNode.Number].Resistors.push_back(RTemp);
+	Circuits[B].VoltageSource.push_back(VTemp);
+
+	PerformSuperPosition(Circuits, "VTemp");
+
+	//Now We Added The R 1 Ohm And E 1 Volt //
+
+	return (1 / abs((Circuits[A].voltage - Circuits[NewNode.Number].voltage))) - 1;
+}
 
 bool CheckEssential(Node* node) {
 	//Please note : voltageSources should be zero  in node analysis , otherwise you should know what you are doing
