@@ -49,5 +49,5 @@ int GetActualSize(vector<Node> nodes);
 double CalculateCurrent(Node* node, string label);
 MatrixXd BuildMatrixI(vector<Node> &nodes, string label);
 bool CheckForOC(vector<Component*> components);
-
+bool RessBelongsToVS(Component* Ress, Node node, vector<Node> nodes);
 void PerformSuperPosition(vector<Node> &nodes, string label);
