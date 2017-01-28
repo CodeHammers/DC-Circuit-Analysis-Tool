@@ -1,0 +1,6 @@
+The value of R5 so that it draws max power = 2.62069
+The max power in R5 = 55.5808
+The value of R4 so that it draws max power = inf
+The max power in R4 = -nan(ind)
+The value of R3 so that it draws max power = 4
+The max power in R3 = 25

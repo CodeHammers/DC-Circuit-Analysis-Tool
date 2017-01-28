@@ -132,9 +132,9 @@ double VoltageSourceCurrent(string element, vector<Node>nodes)
 }
 
 
-void Solve(ofstream &out,vector<Node> &nodes)
+void Solve(ofstream &out,vector<Node> &nodes,vector<Component*> components)
 {
-	double current, voltage, power; int T1, T2;
+	double current, voltage, power,Rmax; int T1, T2;
 	string element, state, response,dueTo, more = "Y";
 
 	while (more != "N") {
@@ -181,7 +181,11 @@ void Solve(ofstream &out,vector<Node> &nodes)
 
 		else if (response == "Rmax") {
 			cin >> state >> element;
-			// then stash state "not needed here" and then call on Max power.
+			power = CalculateMaxPower(element, nodes, components,Rmax);
+			cout << "The value of " << element << " so that it draws max power = " << Rmax << endl;
+			out << "The value of " << element << " so that it draws max power = " << Rmax << endl;
+			cout << "The max power in " << element << " = " << power << endl;
+			out << "The max power in " << element << " = " << power << endl;
 		}
 		cout << "Want to get more responses ? Y or N" << endl;
 		cin >> more;
@@ -189,6 +193,8 @@ void Solve(ofstream &out,vector<Node> &nodes)
 	cout << "An output file has been produced with all the needed reponses" << endl;
 	cout << "END" << endl;
 }
+
+
 double CalcuateVThevenin(string label, vector<Component*> components, vector<Node> nodes) {
 	Node* node1, *node2;
 	Component* comp = NULL;
@@ -248,4 +254,22 @@ double CalcuateVThevenin(string label, vector<Component*> components, vector<Nod
 	}
 	PerformNodeAnalysis(nodes);
 	return CalculateVD(node1->Number + 1, node2->Number + 1, nodes);
+}
+
+
+double CalculateMaxPower(string element,vector<Node>nodes,vector<Component*> components,double &Rth)
+{
+	int x, y;
+	SearchElement(element, nodes, x, y);
+
+	int T1 = nodes[x].Resistors[y]->Terminal1;
+	int T2 = nodes[x].Resistors[y]->Terminal2;
+	cout << endl << T1 << " " << T2 << endl;
+
+	Rth = GettinTheveninResistance(nodes, T1, T2, element);
+	double Vth = CalcuateVThevenin(element, components, nodes);
+
+	double MaxPower = (Vth*Vth) / (4 * Rth);
+
+	return MaxPower;
 }

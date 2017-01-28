@@ -11,14 +11,15 @@ void SpecialSetRef(vector<Node>&nodes,int B)
 }
 double GettinTheveninResistance(vector<Node>Circuits, int A, int B, string name)
 {
-	for (int i = 0; i < Circuits[A].Resistors.size(); ++i)
+	for (int i = 0; i < Circuits[A].Resistors.size(); ++i) {
 		if (Circuits[A].Resistors[i]->Label == name)
 			Circuits[A].Resistors.erase(Circuits[A].Resistors.begin() + i);
+	}
 
-	for (int i = 0; i < Circuits[B].Resistors.size(); ++i)
+	for (int i = 0; i < Circuits[B].Resistors.size(); ++i) {
 		if (Circuits[B].Resistors[i]->Label == name)
 			Circuits[B].Resistors.erase(Circuits[B].Resistors.begin() + i);
-
+	}
 
 	// R Load Deleted 
 	Node NewNode;

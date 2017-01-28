@@ -1,3 +1,17 @@
-﻿  Source.cpp
-  Cicruits Project.vcxproj -> C:\Users\Marshal-Moamen\Documents\GitHub\Circuits-Project-2017\Debug\Cicruits Project.exe
-  Cicruits Project.vcxproj -> C:\Users\Marshal-Moamen\Documents\GitHub\Circuits-Project-2017\Debug\Cicruits Project.pdb (Partial PDB)
+﻿  NodeAnalysis.cpp
+f:\circuits project local\circuits-project-2017\cicruits project\nodeanalysis.cpp(14): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\nodeanalysis.cpp(19): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\nodeanalysis.cpp(61): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\nodeanalysis.cpp(70): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\nodeanalysis.cpp(80): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\nodeanalysis.cpp(91): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\nodeanalysis.cpp(109): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\nodeanalysis.cpp(120): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\nodeanalysis.cpp(163): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\nodeanalysis.cpp(191): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\nodeanalysis.cpp(198): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\nodeanalysis.cpp(222): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\nodeanalysis.cpp(239): warning C4018: '<': signed/unsigned mismatch
+cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
+  Cicruits Project.vcxproj -> F:\Circuits Project Local\Circuits-Project-2017\Debug\Cicruits Project.exe
+  Cicruits Project.vcxproj -> F:\Circuits Project Local\Circuits-Project-2017\Debug\Cicruits Project.pdb (Partial PDB)

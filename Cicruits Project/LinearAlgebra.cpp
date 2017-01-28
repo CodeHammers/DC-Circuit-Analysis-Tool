@@ -25,9 +25,9 @@ MatrixXd BuildMatrixG(vector<Node> &nodes) {
 	}
 	matrixG = -matrixG;
 	matrixG.diagonal() = -matrixG.diagonal();
-	cout << endl << endl;
-	cout << " Matrix G" << endl;
-	cout << matrixG;
+	//cout << endl << endl;
+	/*cout << " Matrix G" << endl;
+	cout << matrixG;*/
 	return matrixG;
 }
 //Builds Currents matrix 
@@ -40,9 +40,9 @@ MatrixXd BuildMatrixI(vector<Node> &nodes) {
 			matrixI(i + CarryForDeprecated, 0) = CalculateCurrent(&nodes[i]);
 		else
 			CarryForDeprecated--;
-	cout << endl << endl;
-	cout << " Matrix I" << endl;
-	cout << matrixI;
+	//cout << endl << endl;
+	/*cout << " Matrix I" << endl;
+	cout << matrixI;*/
 	return matrixI;
 }
 MatrixXd BuildMatrixI(vector<Node> &nodes,string label) {
@@ -56,9 +56,9 @@ MatrixXd BuildMatrixI(vector<Node> &nodes,string label) {
 			matrixI(i + CarryForDeprecated, 0) = CalculateCurrent(&nodes[i],label);
 		else
 			CarryForDeprecated--;
-	cout << endl << endl;
-	cout << " Matrix I" << endl;
-	cout << matrixI;
+	//cout << endl << endl;
+	/*cout << " Matrix I" << endl;
+	cout << matrixI;*/
 	return matrixI;
 }
 //Builds the required Voltage matrix
