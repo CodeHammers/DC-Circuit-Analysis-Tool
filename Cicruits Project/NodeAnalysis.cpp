@@ -19,6 +19,8 @@ double GettinTheveninResistance(vector<Node>Circuits, int A, int B, string name)
 		if (Circuits[B].Resistors[i]->Label == name)
 			Circuits[B].Resistors.erase(Circuits[B].Resistors.begin() + i);
 
+	ConvertCircuit(Circuits);
+
 
 	// R Load Deleted 
 	Node NewNode;
@@ -119,12 +121,28 @@ void ConvertCircuit(vector<Node> &nodes) {
 	for (int i = 0; i < nodes.size(); i++) {
 		if (!CheckEssential(&nodes[i]) && !nodes[i].isRef) {
 			bool validToConvert = !(nodes[i].Resistors.empty() || nodes[i].VoltageSource.empty());
+
 			if (validToConvert) {
 				Node* N = &nodes[i];
 				ConvertVStoCS(N, nodes);
 			}
 		}
 	}
+}
+bool RessBelongsToVS(Component* Ress,Node node,vector<Node> nodes) {
+	int FreeTerminalForRes = Ress->Terminal1 == node.Number ? Ress->Terminal2 : Ress->Terminal1;
+	Node* FreeNode = &nodes[FreeTerminalForRes];
+	if (CheckEssential(FreeNode) || FreeNode->deprecated || FreeNode->VoltageSource.empty())
+		return true;
+	Component * Batt = FreeNode->VoltageSource[0];
+	int FreeTerminalForBatt = Batt->Terminal1 == node.Number ? Batt->Terminal2 : Batt->Terminal1;
+	if (nodes[FreeTerminalForBatt].deprecated)
+		return false;
+	if (CheckEssential(&nodes[FreeTerminalForBatt]))
+		return false;
+	if (nodes[FreeTerminalForBatt].Resistors.empty())
+		return false;
+	return true;
 }
 void ConvertVStoCS(Node* &node, vector<Node> &nodes) {
 	node->deprecated = true;
