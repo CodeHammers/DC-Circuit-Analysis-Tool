@@ -122,6 +122,7 @@ void ConvertCircuit(vector<Node> &nodes) {
 		if (!CheckEssential(&nodes[i]) && !nodes[i].isRef) {
 			bool validToConvert = !(nodes[i].Resistors.empty() || nodes[i].VoltageSource.empty());
 			validToConvert = validToConvert && RessBelongsToVS( nodes[i].Resistors[0],nodes[i],nodes);
+			validToConvert = validToConvert && !nodes[i].deprecated;
 			if (validToConvert) {
 				Node* N = &nodes[i];
 				ConvertVStoCS(N, nodes);

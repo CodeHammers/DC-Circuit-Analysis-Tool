@@ -75,27 +75,3 @@ void AddComponentToNode(Node &node, Component* &comp) {
 		break;
 	}
 }
-
-void Queries(ifstream &input,queue<string> &CurrentResquest, queue<string> &VoltageResquest,
-	         queue<string> &PowerResquest)
-{
-	int CurrentReqNum, VoltageReqNum, PowerReqNum; string element;
-
-	input >> CurrentReqNum;
-	for (int i = 0; i < CurrentReqNum; i++) {
-		input >> element;
-		CurrentResquest.push(element);
-	}
-
-	input >> VoltageReqNum;
-	for (int i = 0; i < VoltageReqNum; i++) {
-		input >> element;
-		VoltageResquest.push(element);
-	}
-
-	input >> PowerReqNum;
-	for (int i = 0; i < PowerReqNum; i++) {
-		input >> element;
-		PowerResquest.push(element);
-	}
-}

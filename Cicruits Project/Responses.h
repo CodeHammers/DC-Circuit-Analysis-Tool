@@ -16,3 +16,6 @@ void Solve(ofstream &out, vector<Node> &nodes,vector<Component*> components);
 double CalcuateVThevenin(string label, vector<Component*> components, vector<Node> nodes);
 
 double CalculateMaxPower(string element, vector<Node>nodes, vector<Component*> components, double &Rth);
+
+bool PowerBalance(vector<Component*> components, vector<Node>nodes,
+	double &DissPower, double &SupPower);
