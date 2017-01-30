@@ -5,15 +5,15 @@ f:\circuits project local\circuits-project-2017\cicruits project\calculatingresp
 f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(16): warning C4018: '<': signed/unsigned mismatch
 f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(25): warning C4018: '<': signed/unsigned mismatch
 f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(26): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(212): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(221): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(226): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(235): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(240): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(249): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(254): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(211): warning C4101: 'pupput': unreferenced local variable
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(293): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(224): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(233): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(238): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(247): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(252): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(261): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(266): warning C4018: '<': signed/unsigned mismatch
+f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(223): warning C4101: 'pupput': unreferenced local variable
+f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(305): warning C4018: '<': signed/unsigned mismatch
 f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(36): warning C4715: 'SearchElement': not all control paths return a value
 f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(104): warning C4715: 'CalculatePower': not all control paths return a value
   Cicruits Project.vcxproj -> F:\Circuits Project Local\Circuits-Project-2017\Debug\Cicruits Project.exe

@@ -158,14 +158,20 @@ void Solve(ofstream &out,vector<Node> &nodes,vector<Component*> components)
 				if (element[0] == 'R')
 					current = ResistorCurrent(element, nodes);
 				else if (element[0] == 'V')
-					current = VoltageSourceCurrent(element, nodes);
+					current = abs(VoltageSourceCurrent(element, nodes));
+
+				cout << "The current passing in " << element << " = " << current << endl;
+				out << "The current passing in " << element << " = " << current << endl;
 			}
 			else if (state == "spe") {
 				cin >> element >> dueTo;
-				//to be done later, superposition.
+				PerformSuperPosition(nodes, dueTo);
+				current = ResistorCurrent(element, nodes);
+				PerformNodeAnalysis(nodes);
+
+				cout << "The current passing in " << element << " due to "<<dueTo<<" = " << current << endl;
+				out  << "The current passing in " << element << " due to " << dueTo << " = " << current << endl;
 			}
-			cout << "The current passing in " << element << " = " << current << endl;
-			out << "The current passing in " << element << " = " << current << endl;
 		}
 
 		else if (response[0] == 'V') {
@@ -173,13 +179,19 @@ void Solve(ofstream &out,vector<Node> &nodes,vector<Component*> components)
 			if (state == "gen") {
 				cin >> T1 >> T2;
 				voltage = CalculateVD(T1, T2, nodes);
+
+				cout << "The voltage between node " << T1 << "and node " << T2 << " = " << voltage << endl;
+				out << "The voltage between node " << T1 << "and node " << T2 << " = " << voltage << endl;
 			}
 			else if (state == "spe") {
 				cin >> T1 >> T2 >> dueTo;
-				//to be done later, superposition.
+				PerformSuperPosition(nodes, dueTo);
+				voltage = CalculateVD(T1,T2,nodes);
+				PerformNodeAnalysis(nodes);
+
+				cout << "The voltage between node " << T1 << " and node " << T2 <<" due to "<<dueTo<< " = " << voltage << endl;
+				out << "The voltage between node " << T1 << " and node " << T2 << " due to " << dueTo << " = " << voltage << endl;
 			}
-			cout << "The voltage between node " << T1 << "and node " << T2 << " = " << voltage << endl;
-			out << "The voltage between node " << T1 << "and node " << T2 << " = " << voltage << endl;
 		}
 
 		else if (response[0] == 'P') {

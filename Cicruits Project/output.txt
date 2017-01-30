@@ -1,0 +1,1 @@
+The current passing in R1 due to V1 = 6.56
