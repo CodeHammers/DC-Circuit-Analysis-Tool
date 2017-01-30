@@ -166,7 +166,11 @@ void Solve(ofstream &out,vector<Node> &nodes,vector<Component*> components)
 			else if (state == "spe") {
 				cin >> element >> dueTo;
 				PerformSuperPosition(nodes, dueTo);
-				current = ResistorCurrent(element, nodes);
+				if(element[0]=='R')
+					current = ResistorCurrent(element, nodes);
+				else if (element[0] == 'V')
+					current = abs(VoltageSourceCurrent(element, nodes));
+
 				PerformNodeAnalysis(nodes);
 
 				cout << "The current passing in " << element << " due to "<<dueTo<<" = " << current << endl;
