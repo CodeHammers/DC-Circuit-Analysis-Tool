@@ -8,7 +8,6 @@ void LoadCircuit(vector<Node> &nodes,vector<Component*> &components) {
 		cout << "Node #" << count << endl;
 		LoadNode(nodes, components, count);
 		count++;
-		cout << "do you want to continue to node #" << count << " ?(Y/N)" << endl;
 		cin >> ToNextNode;
 	} while (ToNextNode == "Y");
 

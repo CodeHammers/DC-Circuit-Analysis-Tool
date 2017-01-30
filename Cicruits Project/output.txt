@@ -1,1 +1,3 @@
-The current passing in R1 due to V1 = 6.56
+The current passing in R5 due to V2 = 2.72
+The current passing in R5 due to V1 = 1.92
+The current passing in R5 = 0.8

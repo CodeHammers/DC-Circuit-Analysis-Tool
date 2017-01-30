@@ -10,6 +10,13 @@ int main()
 	vector<Component*> components;
 
 	LoadCircuit(nodes, components);
+	if (CheckForOC(components, nodes)) {
+		cout << endl << endl << "Error, Bad Connections";
+		cout <<endl<< "please try again " << " . thank you for your patience ";
+		cin.get();
+		cin.get();
+		return 0;
+	}
 	PerformNodeAnalysis(nodes);
 	cout << endl << endl;
 	bool flag = PowerBalance(components,nodes, Diss, Sup);
@@ -18,19 +25,8 @@ int main()
 	if (flag)
 		cout << "Balanced" << endl;
 	else
-		cout << "Not balanced" << endl;
-
-	//double RTH = GettinTheveninResistance(nodes, 1, 2, "R2");
-	
-	/*string label;
-	cout<<"Choose Desired Element for Vthiev"<<endl;
-	cin>>label;
-	cout<<endl<<endl;
-	cout<<endl<<CalcuateVThevenin(label,components,nodes);*/
-	
+		cout << "Not balanced" << endl;	
 	Solve(out, nodes, components);
-	//cout <<"\n\n\n"<< RTH << "Ohm\n";
-	//system("pause");
 	cin.get();
 	cin.get();
 	return 0;

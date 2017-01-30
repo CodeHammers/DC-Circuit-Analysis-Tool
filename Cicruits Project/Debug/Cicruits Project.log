@@ -1,20 +1,46 @@
-﻿  CalculatingResponses.cpp
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(5): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(6): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(15): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(16): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(25): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(26): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(224): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(233): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(238): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(247): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(252): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(261): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(266): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(223): warning C4101: 'pupput': unreferenced local variable
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(305): warning C4018: '<': signed/unsigned mismatch
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(36): warning C4715: 'SearchElement': not all control paths return a value
-f:\circuits project local\circuits-project-2017\cicruits project\calculatingresponses.cpp(104): warning C4715: 'CalculatePower': not all control paths return a value
-  Cicruits Project.vcxproj -> F:\Circuits Project Local\Circuits-Project-2017\Debug\Cicruits Project.exe
-  Cicruits Project.vcxproj -> F:\Circuits Project Local\Circuits-Project-2017\Debug\Cicruits Project.pdb (Partial PDB)
+﻿  UserInput.cpp
+e:\software_development\c++\circuits-project-2017\cicruits project\userinput.cpp(4): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\userinput.cpp(9): warning C4018: '<': signed/unsigned mismatch
+  Source.cpp
+  NodeAnalysis.cpp
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(14): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(18): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(62): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(71): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(81): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(92): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(110): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(121): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(181): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(214): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(221): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(245): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(262): warning C4018: '<': signed/unsigned mismatch
+  LinearAlgebra.cpp
+e:\software_development\c++\circuits-project-2017\cicruits project\linearalgebra.cpp(8): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\linearalgebra.cpp(11): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\linearalgebra.cpp(38): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\linearalgebra.cpp(54): warning C4018: '<': signed/unsigned mismatch
+  IO file.cpp
+e:\software_development\c++\circuits-project-2017\cicruits project\io file.cpp(50): warning C4018: '<': signed/unsigned mismatch
+  CalculatingResponses.cpp
+e:\software_development\c++\circuits-project-2017\cicruits project\calculatingresponses.cpp(5): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\calculatingresponses.cpp(6): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\calculatingresponses.cpp(15): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\calculatingresponses.cpp(16): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\calculatingresponses.cpp(25): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\calculatingresponses.cpp(26): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\calculatingresponses.cpp(224): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\calculatingresponses.cpp(233): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\calculatingresponses.cpp(238): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\calculatingresponses.cpp(247): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\calculatingresponses.cpp(252): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\calculatingresponses.cpp(261): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\calculatingresponses.cpp(266): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\calculatingresponses.cpp(223): warning C4101: 'pupput': unreferenced local variable
+e:\software_development\c++\circuits-project-2017\cicruits project\calculatingresponses.cpp(305): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+e:\software_development\c++\circuits-project-2017\cicruits project\calculatingresponses.cpp(36): warning C4715: 'SearchElement': not all control paths return a value
+e:\software_development\c++\circuits-project-2017\cicruits project\calculatingresponses.cpp(104): warning C4715: 'CalculatePower': not all control paths return a value
+  Cicruits Project.vcxproj -> E:\Software_Development\C++\Circuits-Project-2017\Debug\Cicruits Project.exe
+  Cicruits Project.vcxproj -> E:\Software_Development\C++\Circuits-Project-2017\Debug\Cicruits Project.pdb (Partial PDB)

@@ -37,8 +37,8 @@ int GetBoundryNode(Component* cmp, Node * node);
 void PerformNodeAnalysis(vector<Node> &nodes);
 void ConvertVStoCS(Node* &node, vector<Node> &nodes);
 void ConvertCircuit(vector<Node> &nodes);
-void DeConvertCircuit(vector<Node> &nodes);
-void RollBackChangesToNode(Node* &node, vector<Node> &nodes);
+void DeConvertCircuit(vector<Node> &nodes,string operation,string label);
+void RollBackChangesToNode(Node* &node, vector<Node> &nodes,string operation,string label);
 void SetRefNode(vector<Node> &nodes);
 
 void LoadCircuit(vector<Node> &nodes,vector<Component*> &components);
@@ -48,6 +48,6 @@ void AddComponentToNode(Node &node, Component* &comp);
 int GetActualSize(vector<Node> nodes);
 double CalculateCurrent(Node* node, string label);
 MatrixXd BuildMatrixI(vector<Node> &nodes, string label);
-bool CheckForOC(vector<Component*> components);
+bool CheckForOC(vector<Component*> components,vector<Node> nodes);
 bool RessBelongsToVS(Component* Ress, Node node, vector<Node> nodes);
 void PerformSuperPosition(vector<Node> &nodes, string label);

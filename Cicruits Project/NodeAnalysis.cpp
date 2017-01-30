@@ -177,15 +177,15 @@ int GetBoundryNode(Component* cmp, Node * node) {
 		return cmp->Terminal2;
 	return cmp->Terminal1;
 }
-void DeConvertCircuit(vector<Node> &nodes) {
+void DeConvertCircuit(vector<Node> &nodes,string operation,string label) {
 	for (int i = 0; i < nodes.size(); i++) {
 		if (nodes[i].deprecated == true && !nodes[i].isRef) {
 			Node* N = &nodes[i];
-			RollBackChangesToNode(N, nodes);
+			RollBackChangesToNode(N, nodes,operation,label);
 		}
 	}
 }
-void RollBackChangesToNode(Node* &node, vector<Node> &nodes) {
+void RollBackChangesToNode(Node* &node, vector<Node> &nodes,string operation,string label) {
 	Component* Battery = node->VoltageSource[0];
 	Component* Resistor = node->Resistors[0];
 	int BoundryFromBattSide = GetBoundryNode(Battery, node);
@@ -198,10 +198,15 @@ void RollBackChangesToNode(Node* &node, vector<Node> &nodes) {
 	nodes[BoundryFromBattSide].CurrentSource.pop_back();
 	nodes[BoundryFromRessSide].CurrentSource.pop_back();
 	node->voltageSet = true;
-	if(Battery->Terminal1 == BoundryFromBattSide)
-		node->voltage = nodes[BoundryFromBattSide].voltage - Battery->T1Sign * Battery->Magnitude;
-	else
-		node->voltage = nodes[BoundryFromBattSide].voltage - Battery->T2Sign * Battery->Magnitude;
+	if (operation == "nodeanaylsis" || label == Battery->Label) {
+		if (Battery->Terminal1 == BoundryFromBattSide)
+			node->voltage = nodes[BoundryFromBattSide].voltage - Battery->T1Sign * Battery->Magnitude;
+		else
+			node->voltage = nodes[BoundryFromBattSide].voltage - Battery->T2Sign * Battery->Magnitude;
+	}
+	else {
+		node->voltage = nodes[BoundryFromBattSide].voltage;
+	}
 
 }
 int GetActualSize(vector<Node> nodes) {
@@ -236,7 +241,7 @@ void PerformNodeAnalysis(vector<Node> &nodes) {
 	matI = BuildMatrixI(nodes);
 	matV = GetMatrixV(matG, matI);
 	BindVoltageValues(nodes, matV);
-	DeConvertCircuit(nodes);
+	DeConvertCircuit(nodes,"nodeanaylsis","");
 	for (int i = 0; i < nodes.size(); i++) {
 		if (nodes[i].deprecated)
 			nodes[i].deprecated = false;
@@ -253,7 +258,7 @@ void PerformSuperPosition(vector<Node> &nodes,string label) {
 	matI = BuildMatrixI(nodes,label);
 	matV = GetMatrixV(matG, matI);
 	BindVoltageValues(nodes, matV);
-	DeConvertCircuit(nodes);
+	DeConvertCircuit(nodes,"superposition",label);
 	for (int i = 0; i < nodes.size(); i++) {
 		if (nodes[i].deprecated)
 			nodes[i].deprecated = false;
