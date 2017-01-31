@@ -11,7 +11,7 @@ int main()
 	LoadCircuit(nodes, components);
 	cout << "Circuit has been successfuly Loaded" << endl << endl;
 	cout << "Checking connections ..." << endl << endl;
-
+	system("cls");
 	if (CheckForOC(components, nodes)) {
 		cout << endl << endl << "Error, Bad Connections";
 		cout <<endl<< "please try again " << " . thank you for your patience ";
@@ -19,9 +19,17 @@ int main()
 		cin.get();
 		return 0;
 	}
+	if (CheckPolarity(components)) {
+		cout << "Error, Polarity Check failed ." <<endl;
+		cout << "Found element with same polarity on both terminals";
+		cout << endl << "please try again " << " . thank you for your patience ";
+		cin.get();
+		cin.get();
+		return 0;
+	}
 
 	PerformNodeAnalysis(nodes);
-	cout << endl << endl;
+
 	bool flag = PowerBalance(components,nodes, Diss, Sup);
 	cout << "Dissipated Power = " << Diss << endl;
 	out << "Dissipated Power = " << Diss << endl;

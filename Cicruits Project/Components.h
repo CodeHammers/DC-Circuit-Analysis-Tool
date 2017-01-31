@@ -51,3 +51,4 @@ MatrixXd BuildMatrixI(vector<Node> &nodes, string label);
 bool CheckForOC(vector<Component*> components,vector<Node> nodes);
 bool RessBelongsToVS(Component* Ress, Node node, vector<Node> nodes);
 void PerformSuperPosition(vector<Node> &nodes, string label);
+bool CheckPolarity(vector<Component*> components);

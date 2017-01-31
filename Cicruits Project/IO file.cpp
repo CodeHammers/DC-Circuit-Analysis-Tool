@@ -50,7 +50,12 @@ bool FirstAppeared(string label, vector<Component*> &components, Node &node) {
 	for (int i = 0; i < components.size(); i++) {
 		if (components[i]->Label == label) {
 			components[i]->Terminal2 = node.Number;
+			Component * comp = components[i];
 			cin >> knownValue;
+			if (knownValue < 0) 
+				comp->T2Sign = -1;	
+			else
+				comp->T2Sign = 1;
 			AddComponentToNode(node, components[i]);
 			return false;
 		}
