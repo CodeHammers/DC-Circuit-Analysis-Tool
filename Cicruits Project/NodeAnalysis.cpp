@@ -27,7 +27,7 @@ double GettinTheveninResistance(vector<Node>Circuits, int A, int B, string name)
 	NewNode.Number = Circuits.size();
 	NewNode.isRef = NewNode.deprecated = NewNode.voltageSet = false;
 	Component *VTemp = new Component();
-	VTemp->Label = "VTemp";  VTemp->Magnitude = 1;
+	VTemp->Label = "ETemp";  VTemp->Magnitude = 1;
 	VTemp->Terminal1 = NewNode.Number;	VTemp->Terminal2 = B;
 	VTemp->T1Sign = 1; VTemp->T2Sign = -1;
 
@@ -42,7 +42,7 @@ double GettinTheveninResistance(vector<Node>Circuits, int A, int B, string name)
 	Circuits[NewNode.Number].Resistors.push_back(RTemp);
 	Circuits[B].VoltageSource.push_back(VTemp);
 
-	PerformSuperPosition(Circuits, "VTemp");
+	PerformSuperPosition(Circuits, "ETemp");
 
 	//Now We Added The R 1 Ohm And E 1 Volt //
 

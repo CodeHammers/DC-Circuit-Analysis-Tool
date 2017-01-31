@@ -67,7 +67,7 @@ void AddComponentToNode(Node &node, Component* &comp) {
 	case 'J':
 		node.CurrentSource.push_back(comp);
 		break;
-	case 'V':
+	case 'E':
 		node.VoltageSource.push_back(comp);
 		break;
 	default:

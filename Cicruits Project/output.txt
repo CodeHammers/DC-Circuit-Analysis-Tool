@@ -1,1 +1,8 @@
-The current passing in R1 = 1
+The current passing in R1 due to J1 = 1.10526
+The current passing in R2 due to J1 = 4.42105
+The current passing in R3 due to J1 = 9.47368
+The current passing in R4 due to J1 = 9.47368
+The current passing in R1 due to J2 = 0.105263
+The current passing in R2 due to J2 = 0.421053
+The current passing in R3 due to J2 = 0.526316
+The current passing in R4 due to J2 = 4.47368

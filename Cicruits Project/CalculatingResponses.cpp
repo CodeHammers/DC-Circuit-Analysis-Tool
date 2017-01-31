@@ -1,7 +1,7 @@
 #include "Responses.h"
 bool SearchElement(string element, vector<Node>nodes, int &x, int &y)
 {
-	if (element[0] == 'V') {
+	if (element[0] == 'E') {
 		for (int i = 0; i < nodes.size(); i++) {
 			for (int k = 0; k < nodes[i].VoltageSource.size(); k++) {
 				if (nodes[i].VoltageSource[k]->Label == element) {
@@ -67,7 +67,7 @@ double CalculatePower(string element, vector<Node>nodes)
 		return 0;
 	}
 
-	if (element[0] == 'V') {
+	if (element[0] == 'E') {
 		double Current = VoltageSourceCurrent(element, nodes);
 		double Voltage = nodes[x].VoltageSource[y]->Magnitude;
 
@@ -157,7 +157,7 @@ void Solve(ofstream &out,vector<Node> &nodes,vector<Component*> components)
 				cin >> element;
 				if (element[0] == 'R')
 					current = ResistorCurrent(element, nodes);
-				else if (element[0] == 'V')
+				else if (element[0] == 'E')
 					current = abs(VoltageSourceCurrent(element, nodes));
 
 				cout << "The current passing in " << element << " = " << current << endl;
@@ -168,7 +168,7 @@ void Solve(ofstream &out,vector<Node> &nodes,vector<Component*> components)
 				PerformSuperPosition(nodes, dueTo);
 				if(element[0]=='R')
 					current = ResistorCurrent(element, nodes);
-				else if (element[0] == 'V')
+				else if (element[0] == 'E')
 					current = abs(VoltageSourceCurrent(element, nodes));
 
 				PerformNodeAnalysis(nodes);
@@ -184,8 +184,8 @@ void Solve(ofstream &out,vector<Node> &nodes,vector<Component*> components)
 				cin >> T1 >> T2;
 				voltage = CalculateVD(T1, T2, nodes);
 
-				cout << "The voltage between node " << T1 << "and node " << T2 << " = " << voltage << endl;
-				out << "The voltage between node " << T1 << "and node " << T2 << " = " << voltage << endl;
+				cout << "The voltage between node " << T1 << " and node " << T2 << " = " << voltage << endl;
+				out << "The voltage between node " << T1 << " and node " << T2 << " = " << voltage << endl;
 			}
 			else if (state == "spe") {
 				cin >> T1 >> T2 >> dueTo;
@@ -213,11 +213,11 @@ void Solve(ofstream &out,vector<Node> &nodes,vector<Component*> components)
 			cout << "The max power in " << element << " = " << power << endl;
 			out << "The max power in " << element << " = " << power << endl;
 		}
-		cout << "Want to get more responses ? Y or N" << endl;
+		cout << "Want to get more responses ? Y or N" << endl << endl;
 		cin >> more;
 	}
-	cout << "An output file has been produced with all the needed reponses" << endl;
-	cout << "END" << endl;
+	cout <<endl<< "An output file has been produced with all the needed reponses" << endl;
+	cout <<endl<< "END" << endl;
 }
 
 
@@ -233,7 +233,7 @@ double CalcuateVThevenin(string label, vector<Component*> components, vector<Nod
 	node1 = &nodes[comp->Terminal1];
 	node2 = &nodes[comp->Terminal2];
 	switch (label[0]) {
-	case 'V':
+	case 'E':
 		for (int i = 0; i < node1->VoltageSource.size(); i++) {
 			if (node1->VoltageSource[i]->Label == label) {
 				pos1 = i;
@@ -290,7 +290,7 @@ double CalculateMaxPower(string element,vector<Node>nodes,vector<Component*> com
 
 	int T1 = nodes[x].Resistors[y]->Terminal1;
 	int T2 = nodes[x].Resistors[y]->Terminal2;
-	cout << endl << T1 << " " << T2 << endl;
+	//cout << endl << T1 << " " << T2 << endl;
 
 	Rth = GettinTheveninResistance(nodes, T1, T2, element);
 	double Vth = CalcuateVThevenin(element, components, nodes);
@@ -313,7 +313,7 @@ bool PowerBalance(vector<Component*> components, vector<Node>nodes,
 			DissPower += temp;
 		
 
-		else if (components[i]->Label[0] == 'J' || components[i]->Label[0] == 'V') {
+		else if (components[i]->Label[0] == 'J' || components[i]->Label[0] == 'E') {
 			if (temp < 0)
 				DissPower += abs(temp);
 			else
