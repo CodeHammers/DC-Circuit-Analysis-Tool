@@ -1,4 +1,16 @@
-﻿  IO file.cpp
-e:\software_development\c++\circuits-project-2017\cicruits project\io file.cpp(50): warning C4018: '<': signed/unsigned mismatch
+﻿  NodeAnalysis.cpp
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(6): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(10): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(57): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(66): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(76): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(87): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(105): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(116): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(180): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(213): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(220): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(244): warning C4018: '<': signed/unsigned mismatch
+e:\software_development\c++\circuits-project-2017\cicruits project\nodeanalysis.cpp(263): warning C4018: '<': signed/unsigned mismatch
   Cicruits Project.vcxproj -> E:\Software_Development\C++\Circuits-Project-2017\Debug\Cicruits Project.exe
   Cicruits Project.vcxproj -> E:\Software_Development\C++\Circuits-Project-2017\Debug\Cicruits Project.pdb (Partial PDB)

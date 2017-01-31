@@ -1,0 +1,10 @@
+Dissipated Power = 573.333
+Supplied Power = 573.333
+The value of R1 so that it draws max power = 12
+The max power in R1 = 8.33333
+The value of R4 so that it draws max power = 9
+The max power in R4 = 11.1111
+The value of R2 so that it draws max power = 13
+The max power in R2 = 173.558
+The value of R5 so that it draws max power = 11
+The max power in R5 = 205.114

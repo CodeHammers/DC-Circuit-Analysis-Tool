@@ -1,16 +1,8 @@
 #include "Components.h"
-void SpecialSetRef(vector<Node>&nodes,int B)
-{
-		if (!nodes[B].deprecated) {
-			nodes[B].deprecated = true;
-			nodes[B].isRef = true;
-			nodes[B].voltage = 0;
-			nodes[B].voltageSet = true;
-			return;
-		}
-}
+
 double GettinTheveninResistance(vector<Node>Circuits, int A, int B, string name)
 {
+
 	for (int i = 0; i < Circuits[A].Resistors.size(); ++i)
 		if (Circuits[A].Resistors[i]->Label == name)
 			Circuits[A].Resistors.erase(Circuits[A].Resistors.begin() + i);
@@ -18,9 +10,12 @@ double GettinTheveninResistance(vector<Node>Circuits, int A, int B, string name)
 	for (int i = 0; i < Circuits[B].Resistors.size(); ++i)
 		if (Circuits[B].Resistors[i]->Label == name)
 			Circuits[B].Resistors.erase(Circuits[B].Resistors.begin() + i);
+	Circuits[A].isRef = true;
+	Circuits[B].isRef = true;
 
 	ConvertCircuit(Circuits);
-
+	Circuits[A].isRef = false;
+	Circuits[B].isRef = false;
 
 	// R Load Deleted 
 	Node NewNode;
@@ -154,6 +149,10 @@ void ConvertVStoCS(Node* &node, vector<Node> &nodes) {
 	CurrentSource->Magnitude = Battery->Magnitude / Resistor->Magnitude;
 	int BoundryFromRessSide = GetBoundryNode(Resistor, node);
 	int BoundryFromBattSide = GetBoundryNode(Battery, node);
+	if (nodes[BoundryFromBattSide].deprecated) {
+		node->deprecated = false;
+		return;
+	}
 	if (Resistor->Terminal1 == node->Number)
 		Resistor->Terminal1 = BoundryFromBattSide;
 	else
@@ -245,6 +244,8 @@ void PerformNodeAnalysis(vector<Node> &nodes) {
 	for (int i = 0; i < nodes.size(); i++) {
 		if (nodes[i].deprecated)
 			nodes[i].deprecated = false;
+		if (nodes[i].isRef)
+			nodes[i].isRef = false;
 	}
 }
 void PerformSuperPosition(vector<Node> &nodes,string label) {
@@ -262,5 +263,7 @@ void PerformSuperPosition(vector<Node> &nodes,string label) {
 	for (int i = 0; i < nodes.size(); i++) {
 		if (nodes[i].deprecated)
 			nodes[i].deprecated = false;
+		if (nodes[i].isRef)
+			nodes[i].isRef = false;
 	}
 }

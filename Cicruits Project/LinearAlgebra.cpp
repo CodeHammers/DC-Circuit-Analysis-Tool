@@ -2,7 +2,7 @@
 //Builds G matrix 1/sumRes for all nodes
 MatrixXd BuildMatrixG(vector<Node> &nodes) {
 	int ActualSize = GetActualSize(nodes);
-	MatrixXd matrixG(ActualSize, ActualSize);//Bug : Actual size = node.size - DeprecatedCount		Number	1	int
+	MatrixXd matrixG(ActualSize, ActualSize);//Bug: Actual size = node.size - DeprecatedCount		Number	1	int
 	int CarryForDeprecatedOnI = 0;
 	int CarryForDeprecatedOnJ = 0;
 	for (int i = 0; i < nodes.size(); i++) {
